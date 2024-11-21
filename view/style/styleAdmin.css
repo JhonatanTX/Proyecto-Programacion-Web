@@ -1,0 +1,15 @@
+
+.bg{
+    background-color: #16191c;
+}
+
+.form-control{
+    min-height: 2.5rem;
+}
+
+.img-1{
+    background-image:url(../img/collage.png);
+    background-size: cover;
+    margin: 0;
+    align-items: center;
+}

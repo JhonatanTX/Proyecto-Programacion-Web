@@ -35,7 +35,7 @@ class DestinoModel{
         }
     }
 
-    function obtenerCliente($destinoId){
+    function obtenerDestino($destinoId){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         $sentencia = "SELECT nombre_destino,region,descripcion FROM destinos WHERE id_destino = $destinoId";
@@ -48,7 +48,7 @@ class DestinoModel{
         }
     }
 
-    function actualizarCliente($destinoId,$nombreDestino,$region,$descripcion){
+    function actualizarDestino($destinoId,$nombreDestino,$region,$descripcion){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         $sentencia = "UPDATE destinos SET nombre_destino = $nombreDestino,region = $region,descripcion = $descripcion WHERE id_destino = $destinoId";
@@ -62,7 +62,7 @@ class DestinoModel{
         
     }
 
-    function borrarCliente($destinoId){
+    function borrarDestino($destinoId){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
