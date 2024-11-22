@@ -15,7 +15,7 @@ switch ($opcion) {
 	// LOGIN ADMIN
 	case 'login-form-admin':
 
-		include("../views/login admin/LOGINF.php");
+		include("../views/viewLoginAdmin/loginAdmin.php");
 		break;
 	case 'login-procesar': //VERIFICAR ADMINISTRADOR
 		// code...
