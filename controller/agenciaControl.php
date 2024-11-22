@@ -1,12 +1,13 @@
 <?php
-include("../models/UsuarioModel.php");
-include("../models/EmpleadoModel.php");
-include("../models/ProductoModel.php");
-include("../models/CategoriaModel.php");
-include("../models/ClienteModel.php");
-include("../models/DistribuidorModel.php");
-include("../models/ProveedorModel.php");
-include("../models/ComprarModel.php");
+include("../models/adminModel.php");
+include("../models/empleadoModel.php");
+include("../models/hotelModel.php");
+include("../models/viajeModel.php");
+include("../models/clienteModel.php");
+include("../models/transporteModel.php");
+include("../models/proveedorModel.php");
+include("../models/pagoModel.php");
+include("../models/reservaModel.php")
 
 $opcion = $_GET['opcion'];
 switch ($opcion) {
@@ -23,7 +24,7 @@ switch ($opcion) {
 		$contraseñaA = sha1($_POST['contraseñaA']);
 
 
-		$objModel = new UsuarioModel();
+		$objModel = new adminModel();
 		$result = $objModel->verUsuario($usuarioA,$contraseñaA);
 
 		if($result == 1){
@@ -128,7 +129,7 @@ switch ($opcion) {
 	
 	case 'categoria-listado':
 
-		$objCat = new CategoriaModel();
+		$objCat = new viajeModel();
 		$resultCategorias = $objCat->listarCategoria();
 
 		include("../views/template/header.php");
@@ -150,7 +151,7 @@ switch ($opcion) {
 	
 		$categoria = $_POST['categoria'];
 	
-		$objCat = new CategoriaModel();
+		$objCat = new viajeModel();
 		$resultCategorias = $objCat->crearCategoria($categoria);
 	
 		if ($resultCategorias == 1) {
@@ -163,7 +164,7 @@ switch ($opcion) {
 	
 	case 'categoria-eliminar':
 
-		$objCat = new CategoriaModel();
+		$objCat = new viajeModel();
 		$idCategoria = $_GET['idCat'];
 		$resultCategorias = $objCat->borrarCategoria($idCategoria);
 	
@@ -177,7 +178,7 @@ switch ($opcion) {
 	
 	case 'categoria-editar':
 			$idCategoria = $_GET['idCat'];
-			$objCat = new CategoriaModel();
+			$objCat = new viajeModel();
 			$categorias = $objCat->obtenerCategoria($idCategoria);
 	
 			if ($categorias) {
@@ -196,7 +197,7 @@ switch ($opcion) {
 			$idCat = $_POST['idCat'];
 			$categoria = $_POST['categoria'];
 	
-			$objCat = new CategoriaModel();
+			$objCat = new viajeModel();
 			$resultCategorias = $objCat->actualizarCategoria($idCat, $categoria);
 	
 			if ($resultCategorias == 1) {
@@ -211,7 +212,7 @@ switch ($opcion) {
 
 	case 'cliente-listado':
 
-		$objCli = new ClienteModel();
+		$objCli = new clienteModel();
 		$resultClientes = $objCli->listarCliente();
 
 		include("../views/template/header.php");
@@ -238,7 +239,7 @@ switch ($opcion) {
 		$pregunta = $_POST['pregunta'];
 		$respuesta = $_POST['respuesta'];
 
-		$objCli = new ClienteModel();
+		$objCli = new clienteModel();
 		$resultClientes = $objCli->crearCliente($usuario,$nombre,$apellido,$contraseña,$pregunta,$respuesta);
 
 		if ($resultClientes == 1) {
@@ -251,7 +252,7 @@ switch ($opcion) {
 	
 	case 'cliente-eliminar':
 
-		$objCli = new ClienteModel();
+		$objCli = new clienteModel();
 		$idCliente = $_GET['idCli'];
 		$resultClientes = $objCli->borrarCliente($idCliente);
 
@@ -265,7 +266,7 @@ switch ($opcion) {
 	
 		case 'cliente-editar':
 			$idCliente = $_GET['idCli'];
-			$objCli = new ClienteModel();
+			$objCli = new clienteModel();
 			$cliente = $objCli->obtenerCliente($idCliente);
 	
 			if ($cliente) {
@@ -294,7 +295,7 @@ switch ($opcion) {
 			$pregunta = $_POST['pregunta'];
 			$respuesta = $_POST['respuesta'];
 	
-			$objCli = new ClienteModel();
+			$objCli = new clienteModel();
 			$resultClientes = $objCli->actualizarCliente($idCli, $usuario, $nombre, $apellido, $contraseña, $pregunta, $respuesta);
 	
 			if ($resultClientes == 1) {
@@ -309,7 +310,7 @@ switch ($opcion) {
 	
 	case 'producto-listado':
 
-		$objPro = new ProductoModel();
+		$objPro = new hotelModel();
 		$resultProductos = $objPro->listarProducto();
 
 		include("../views/template/header.php");
@@ -321,10 +322,10 @@ switch ($opcion) {
 
 	case 'producto-nuevo':
 
-		$objProv = new ProveedorModel();
+		$objProv = new proveedorModel();
     	$resultProveedores = $objProv->listarProveedor();
 
-		$objCat = new CategoriaModel();
+		$objCat = new viajeModel();
     	$resultCategorias = $objCat->listarCategoria();
 
 		include("../views/template/header.php");
@@ -346,7 +347,7 @@ switch ($opcion) {
 			$precio = $_POST['precio'];
 			$imagen = $_POST['imagen'];
 		
-			$objPro = new ProductoModel();
+			$objPro = new hotelModel();
 			$resultProductos = $objPro->crearProducto($codigo, $nombre, $descripcion, $proveedor, $categoria, $estado, $stock, $precio, $imagen);
 		
 			if ($resultProductos == 1) {
@@ -359,7 +360,7 @@ switch ($opcion) {
 
 	case 'producto-eliminar':
 
-			$objPro = new ProductoModel();
+			$objPro = new hotelModel();
 			$idProducto = $_GET['idPro'];
 			$resultProductos = $objPro->borrarProducto($idProducto);
 		
@@ -374,13 +375,13 @@ switch ($opcion) {
 	case 'producto-editar':
 		
 		$idProducto = $_GET['idPro'];
-		$objPro = new ProductoModel();
+		$objPro = new hotelModel();
 		$productos = $objPro->obtenerProducto($idProducto);
 	
-		$objCat = new CategoriaModel();
+		$objCat = new viajeModel();
 		$resultCategorias = $objCat->listarCategoria();
 
-		$objProv = new ProveedorModel();
+		$objProv = new proveedorModel();
     	$resultProveedores = $objProv->listarProveedor();
 	
 		if ($productos) {
@@ -417,7 +418,7 @@ switch ($opcion) {
 		$precio = $_POST['precio'];
 		$imagen = $_POST['imagen'];
 
-		$objPro = new ProductoModel();
+		$objPro = new hotelModel();
 		$resultProductos = $objPro->actualizarProducto($idPro, $codigo, $nombre, $descripcion, $proveedor, $categoria, $estado, $stock, $precio, $imagen);
 		
 		if ($resultProductos == 1) {
@@ -432,7 +433,7 @@ switch ($opcion) {
 	
 	case 'proveedor-listado':
 
-		$objProv = new ProveedorModel();
+		$objProv = new proveedorModel();
 		$resultProveedores = $objProv->listarProveedor();
 
 		include("../views/template/header.php");
@@ -460,7 +461,7 @@ switch ($opcion) {
 		$codigopostal = $_POST['codigopostal'];
 		$celular = $_POST['celular'];
 
-		$objProv = new ProveedorModel();
+		$objProv = new proveedorModel();
 		$resultProveedores = $objProv->crearProveedor($proveedor,$nombre,$direccion,$ciudad,$codigopostal,$celular);
 
 		if ($resultProveedores == 1) {
@@ -473,7 +474,7 @@ switch ($opcion) {
 	
 	case 'proveedor-eliminar':
 
-		$objProv = new ProveedorModel();
+		$objProv = new proveedorModel();
 		$idProveedor = $_GET['idProv'];
 		$resultProveedores = $objProv->borrarProveedor($idProveedor);
 
@@ -487,7 +488,7 @@ switch ($opcion) {
 
 	case 'proveedor-editar':
 			$idProveedor = $_GET['idProv'];
-			$objProv = new ProveedorModel();
+			$objProv = new proveedorModel();
 			$proveedor1 = $objProv->obtenerProveedor($idProveedor);
 	
 			if ($proveedor1) {
@@ -518,7 +519,7 @@ switch ($opcion) {
 			$codigopostal = $_POST['codigopostal'];
 			$celular = $_POST['celular'];
 	
-			$objProv = new ProveedorModel();
+			$objProv = new proveedorModel();
 			$resultProveedores = $objProv->actualizarProveedor($idProv,$proveedor,$nombre,$direccion,$ciudad,$codigopostal,$celular);
 	
 			if ($resultProveedores == 1) {
@@ -533,7 +534,7 @@ switch ($opcion) {
 
 	case 'distribuidor-listado':
 
-		$objDis = new DistribuidorModel();
+		$objDis = new transporteModel();
 		$resultDistribuidores = $objDis->listarDistribuidor();
 
 		include("../views/template/header.php");
@@ -557,7 +558,7 @@ switch ($opcion) {
 		$distribuidor = $_POST['distribuidor'];
 		$celular = $_POST['celular'];
 
-		$objDis = new DistribuidorModel();
+		$objDis = new transporteModel();
 		$resultDistribuidores = $objDis->crearDistribuidor($distribuidor,$celular);
 
 		if ($resultDistribuidores == 1) {
@@ -570,7 +571,7 @@ switch ($opcion) {
 	
 	case 'distribuidor-eliminar':
 
-		$objDis = new DistribuidorModel();
+		$objDis = new transporteModel();
 		$idDistribuidor = $_GET['idDis'];
 		$resultDistribuidores = $objDis->borrarDistribuidor($idDistribuidor);
 
@@ -584,7 +585,7 @@ switch ($opcion) {
 
 	case 'distribuidor-editar':
 			$idDistribuidor = $_GET['idDis'];
-			$objDis = new DistribuidorModel();
+			$objDis = new transporteModel();
 			$distribuidor1 = $objDis->obtenerDistribuidor($idDistribuidor);
 	
 			if ($distribuidor1) {
@@ -607,7 +608,7 @@ switch ($opcion) {
 			$distribuidor = $_POST['distribuidor'];
 			$celular = $_POST['celular'];
 	
-			$objDis = new DistribuidorModel();
+			$objDis = new transporteModel();
 			$resultDistribuidores = $objDis->actualizarDistribuidor($idDis,$distribuidor,$celular);
 	
 			if ($resultDistribuidores == 1) {
@@ -633,16 +634,16 @@ switch ($opcion) {
 	
 	case 'compra-nuevo':
 
-		$objDis = new DistribuidorModel();
+		$objDis = new transporteModel();
     	$resultDistribuidores = $objDis->listarDistribuidor();
 
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->listarEmpleado();
 
-		$objCli = new ClienteModel();
+		$objCli = new clienteModel();
 		$resultClientes = $objCli->listarCliente();
 
-		$objPro = new ProductoModel();
+		$objPro = new hotelModel();
 		$resultProductos = $objPro->listarProducto();
 
 		include("../views/template/header.php");
@@ -691,16 +692,16 @@ switch ($opcion) {
 		$objCom = new CompraModel();
 		$compras = $objCom->obtenerCompra($idCompra);
 	
-		$objDis = new DistribuidorModel();
+		$objDis = new transporteModel();
     	$resultDistribuidores = $objDis->listarDistribuidor();
 
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->listarEmpleado();
 
-		$objCli = new ClienteModel();
+		$objCli = new clienteModel();
 		$resultClientes = $objCli->listarCliente();
 
-		$objPro = new ProductoModel();
+		$objPro = new hotelModel();
 		$resultProductos = $objPro->listarProducto();
 
 	
