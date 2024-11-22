@@ -1,15 +1,15 @@
 <?php
 require_once("conexion.php");
-class PaqueteModel{
+class ProveedorModel{
     
     function __construct(){
     }
     
-    function crearPaquete($nombrePaquete,$duracion,$descripcion,$precio){
+    function crearProveedor($nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO paquetes (nombre_paquete,duracion_dias,descripcion,precio) VALUES  ($nombrePaquete,$duracion,$descripcion,$precio)";
+        $sentencia = "INSERT INTO proveedores (nombre_empresa,tipo_servicio,contacto,direccion,telefono,correo_electronico,tarifas) VALUES  ($nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas)";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -19,26 +19,26 @@ class PaqueteModel{
         }
     }
 
-    function listarPaquete(){
+    function listarProveedor(){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT * FROM paquetes";
+        $sentencia = "SELECT * FROM proveedores";
         $resultado = $conexion->query($sentencia);
         
         if ($resultado->num_rows > 0){
             while($row = $resultado->fetch_assoc()){
-                $arrayPaquete[] = $row;
+                $arrayProveedor[] = $row;
             }
-            return $arrayPaquete;
+            return $arrayProveedor;
         }else{
             echo "0 results"; 
         }
     }
 
-    function obtenerPaquete($paqueteId){
+    function obtenerProveedor($id_proveedor){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT nombre_paquete,duracion_dias,descripcion,precio FROM paquetes WHERE id_paquete = $paqueteId";
+        $sentencia = "SELECT nombre_empresa,tipo_servicio,contacto,direccion,telefono,correo_electronico,tarifas FROM proveedores WHERE id_proveedor = $id_proveedor";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class PaqueteModel{
         }
     }
 
-    function actualizarPaquete($paqueteId,$nombrePaquete,$duracion,$descripcion,$precio){
+    function actualizarProveedor($id_proveedor,$nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE paquetes SET nombre_paquete = $nombrePaquete,duracion_dias = $duracion,descripcion = $descripcion,precio = $precio WHERE id_paquete = $paqueteId";
+        $sentencia = "UPDATE proveedores SET nombre_empresa = $nombre_empresa,tipo_servicio = $tipo_servicio,contacto = $contacto,direccion = $direccion,telefono = $telefono,correo_electronico = $correo_electronico,tarifas = $tarifas WHERE id_proveedor = $id_proveedor";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -62,11 +62,11 @@ class PaqueteModel{
         
     }
 
-    function borrarPaquete($paqueteId){
+    function borrarProveedor($id_proveedor){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM paquetes WHERE id_paquete = $paqueteId ";
+		$sentencia = "DELETE FROM proveedores WHERE id_proveedor = $id_proveedor ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

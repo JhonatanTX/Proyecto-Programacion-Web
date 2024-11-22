@@ -5,11 +5,11 @@ class ReservaModel{
     function __construct(){ 
     }
     
-    function crearReserva($estado,$fechaReserva,$clienteId,$pagoId,$paqueteId){
+    function crearReserva($id_cliente,$id_viaje,$fecha_reserva,$numero_personas,$fecha_salida,$fecha_regreso,$estado_reserva,$precio_total){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO reservas (estado,fecha_reserva,id_cliente,id_pago,id_paquete) VALUES  ($estado,$fechaReserva,$clienteId,$pagoId,$paqueteId)";
+        $sentencia = "INSERT INTO reservas (id_cliente,id_viaje,fecha_reserva,numero_personas,fecha_salida,fecha_regreso,estado_reserva,precio_total) VALUES  ($id_cliente,$id_viaje,$fecha_reserva,$numero_personas,$fecha_salida,$fecha_regreso,$estado_reserva,$precio_total)";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -35,10 +35,10 @@ class ReservaModel{
         }
     }
 
-    function obtenerReserva($reservaId){
+    function obtenerReserva($id_reserva){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT estado,fecha_reserva,id_cliente,id_pago,id_paquete FROM reservas WHERE id_reserva = $reservaId";
+        $sentencia = "SELECT id_cliente,id_viaje,fecha_reserva,numero_personas,fecha_salida,fecha_regreso,estado_reserva,precio_total FROM reservas WHERE id_reserva = $id_reserva";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class ReservaModel{
         }
     }
 
-    function actualizarReserva($reservaId,$estado,$fechaReserva,$clienteId,$pagoId,$paqueteId){
+    function actualizarReserva($id_reserva,$id_cliente,$id_viaje,$fecha_reserva,$numero_personas,$fecha_salida,$fecha_regreso,$estado_reserva,$precio_total){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE reservas SET estado = $estado,fecha_reserva = $fechaReserva,id_cliente = $clienteId,id_pago = $pagoId,id_paquete = $paqueteId WHERE id_reserva = $reservaId";
+        $sentencia = "UPDATE reservas SET id_cliente = $id_cliente,id_viaje = $id_viaje,fecha_reserva = $fecha_reserva,numero_personas = $numero_personas,fecha_salida = $fecha_salida,fecha_regreso = $fecha_regreso,estado_reserva = $estado_reserva,precio_total = $precio_total WHERE id_reserva = $id_reserva";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -62,11 +62,11 @@ class ReservaModel{
         
     }
 
-    function borrarReserva($reservaId){
+    function borrarReserva($id_reserva){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM reservas WHERE id_reserva = $reservaId ";
+		$sentencia = "DELETE FROM reservas WHERE id_reserva = $id_reserva ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

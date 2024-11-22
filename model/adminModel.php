@@ -1,15 +1,15 @@
 <?php 
 require_once('conexion.php');
 
-class UsuarioModel{
+class AdminModel{
 
     function __construct(){
     }
     
-    function verUsuario($usuario,$contraseña){
+    function verEmpledo($nombre,$contraseña){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT usuario FROM admin WHERE usuario = $usuario AND contraseña =$contraseña";
+        $sentencia = "SELECT nombre FROM empleados WHERE nombre = $nombre AND contrasena =$contraseña";
         $resultado = $conexion->query($sentencia);
 
         if ($resultado->num_rows > 0){

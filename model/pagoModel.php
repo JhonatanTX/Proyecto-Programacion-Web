@@ -1,15 +1,15 @@
 <?php
 require_once("conexion.php");
-class DestinoModel{
+class PagoModel{
     
     function __construct(){
     }
     
-    function crearDestino($nombreDestino,$region,$descripcion){
+    function crearPago($monto_pagado,$fecha_pago,$metodo_pago,$id_reserva){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO destinos (nombre_destino,region,descripcion) VALUES  ($nombreDestino,$region,$descripcion)";
+        $sentencia = "INSERT INTO pagos (monto_pagado,fecha_pago,metodo_pago,id_reserva) VALUES  ($monto_pagado,$fecha_pago,$metodo_pago,$id_reserva)";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -19,26 +19,26 @@ class DestinoModel{
         }
     }
 
-    function listarDestino(){
+    function listarPago(){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT * FROM destinos";
+        $sentencia = "SELECT * FROM pagos";
         $resultado = $conexion->query($sentencia);
         
         if ($resultado->num_rows > 0){
             while($row = $resultado->fetch_assoc()){
-                $arrayDestinos[] = $row;
+                $arrayPago[] = $row;
             }
-            return $arrayDestinos;
+            return $arrayPago;
         }else{
             echo "0 results"; 
         }
     }
 
-    function obtenerDestino($destinoId){
+    function obtenerPago($id_pago){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT nombre_destino,region,descripcion FROM destinos WHERE id_destino = $destinoId";
+        $sentencia = "SELECT monto_pagado,fecha_pago,metodo_pago,id_reserva FROM pagos WHERE id_pago = $id_pago";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class DestinoModel{
         }
     }
 
-    function actualizarDestino($destinoId,$nombreDestino,$region,$descripcion){
+    function actualizarPago($id_pago,$monto_pagado,$fecha_pago,$metodo_pago,$id_reserva){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE destinos SET nombre_destino = $nombreDestino,region = $region,descripcion = $descripcion WHERE id_destino = $destinoId";
+        $sentencia = "UPDATE pagos SET monto_pagado = $monto_pagado,fecha_pago = $fecha_pago,metodo_pago = $metodo_pago,id_reserva = $id_reserva WHERE id_pago = $id_pago";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -62,11 +62,11 @@ class DestinoModel{
         
     }
 
-    function borrarDestino($destinoId){
+    function borrarPago($id_pago){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM destinos WHERE id_destino = $destinoId ";
+		$sentencia = "DELETE FROM pagos WHERE id_pago = $id_pago ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

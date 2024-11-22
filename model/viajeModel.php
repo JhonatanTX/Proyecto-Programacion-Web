@@ -1,15 +1,15 @@
 <?php
 require_once("conexion.php");
-class MedioPagoModel{
+class ViajeModel{
     
     function __construct(){
     }
     
-    function crearMedioPago($metodoPago,$fechaPago,$monto){
+    function crearViaje($nombre_paquete,$descripcion,$destinos,$precio,$fechas_disponibles,$duracion,$transporte){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO mediospago (metodo_pago,fecha_pago,monto) VALUES  ($metodoPago,$fechaPago,$monto)";
+        $sentencia = "INSERT INTO viajes (nombre_paquete,descripcion,destinos,precio,fechas_disponibles,duracion,transporte) VALUES  ($nombre_paquete,$descripcion,$destinos,$precio,$fechas_disponibles,$duracion,$transporte)";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -19,26 +19,26 @@ class MedioPagoModel{
         }
     }
 
-    function listarMedioPago(){
+    function listarViaje(){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT * FROM mediospago";
+        $sentencia = "SELECT * FROM viajes";
         $resultado = $conexion->query($sentencia);
         
         if ($resultado->num_rows > 0){
             while($row = $resultado->fetch_assoc()){
-                $arrayPago[] = $row;
+                $arrayViaje[] = $row;
             }
-            return $arrayPago;
+            return $arrayViaje;
         }else{
             echo "0 results"; 
         }
     }
 
-    function obtenerMedioPago($pagoId){
+    function obtenerViaje($id_viaje){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT metodo_pago,fecha_pago,monto FROM mediospago WHERE id_pago = $pagoId";
+        $sentencia = "SELECT nombre_paquete,descripcion,destinos,precio,fechas_disponibles,duracion,transporte FROM viajes WHERE id_viaje = $id_viaje";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class MedioPagoModel{
         }
     }
 
-    function actualizarMedioPago($pagoId,$metodoPago,$fechaPago,$monto){
+    function actualizarViaje($id_viaje,$nombre_paquete,$descripcion,$destinos,$precio,$fechas_disponibles,$duracion,$transporte){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE mediospago SET metodo_pago = $metodoPago,fecha_pago = $fechaPago,monto = $monto WHERE id_pago = $pagoId";
+        $sentencia = "UPDATE viajes SET nombre_paquete = $nombre_paquete,descripcion = $descripcion,destinos = $destinos,precio = $precio,fechas_disponibles = $fechas_disponibles,duracion = $duracion,transporte = $transporte WHERE id_viaje = $id_viaje";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -62,11 +62,11 @@ class MedioPagoModel{
         
     }
 
-    function borrarMedioPago($pagoId){
+    function borrarViaje($id_viaje){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM mediospago WHERE id_pago = $pagoId ";
+		$sentencia = "DELETE FROM viajes WHERE id_viaje = $id_viaje ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

@@ -21,10 +21,10 @@ class ClienteModel{
         }
     }
 
-    function obtenerCliente($clienteId){
+    function obtenerCliente($id_cliente){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT usuario,nombre,apellido,email,telefono FROM clientes WHERE id_cliente = $clienteId";
+        $sentencia = "SELECT nombre,apellido,correo_electronico,telefono,direccion FROM clientes WHERE id_cliente = $id_cliente";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -34,10 +34,10 @@ class ClienteModel{
         }
     }
 
-    function actualizarCliente($clienteId,$usuario,$contraseña,$nombre,$apellido,$email,$telefono){
+    function actualizarCliente($id_cliente,$nombre,$apellido,$correo_electronico,$telefono,$direccion){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE clientes SET usuario = $usuario,contraseña = $contraseña,nombre = $nombre,apellido = $apellido,email = $email,telefono = $telefono WHERE id_cliente = $clienteId";
+        $sentencia = "UPDATE clientes SET nombre = $nombre,apellido = $apellido,correo_electronico = $correo_electronico,telefono = $telefono ,direccion = $direccion WHERE id_cliente = $id_cliente";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -48,11 +48,11 @@ class ClienteModel{
         
     }
 
-    function borrarCliente($clienteId){
+    function borrarCliente($id_cliente){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM clientes WHERE id_cliente = $clienteId ";
+		$sentencia = "DELETE FROM clientes WHERE id_cliente = $id_cliente ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){
@@ -62,11 +62,11 @@ class ClienteModel{
 		}
     }
 
-    function crearCliente($usuario,$contraseña,$nombre,$apellido,$email,$telefono){
+    function crearCliente($nombre,$apellido,$correo_electronico,$telefono,$direccion){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "INSERT INTO clientes (usuario,nombre,apellido,contraseña,email,telefono) VALUES  ('$usuario', '$nombre', '$apellido','$contraseña','$email','$telefono')";
+		$sentencia = "INSERT INTO clientes (nombre,apellido,correo_electronico,telefono,direccion) VALUES  ('$nombre', '$apellido','$correo_electronico','$telefono','$direccion')";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

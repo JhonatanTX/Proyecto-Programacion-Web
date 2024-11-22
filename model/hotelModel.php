@@ -5,11 +5,11 @@ class HotelModel{
     function __construct(){
     }
     
-    function crearHotel($nombreHotel,$direccion,$calificacion,$destinoId){
+    function crearHotel($nombre_hotel,$direccion,$telefono,$correo_electronico,$lugar,$id_proveedor){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO hoteles (nombre_hotel,direccion,calificacion,id_destino) VALUES  ($nombreHotel,$direccion,$calificacion,$destinoId)";
+        $sentencia = "INSERT INTO hoteles (nombre_hotel,direccion,telefono,correo_electronico,lugar,id_proveedor) VALUES  ($nombre_hotel,$direccion,$telefono,$correo_electronico,$lugar,$id_proveedor)";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -35,10 +35,10 @@ class HotelModel{
         }
     }
 
-    function obtenerHotel($hotelId){
+    function obtenerHotel($id_hotel){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT nombre_hotel,direccion,calificacion,id_destino FROM hoteles WHERE id_hotel = $hotelId";
+        $sentencia = "SELECT nombre_hotel,direccion,telefono,correo_electronico,lugar,id_proveedor FROM hoteles WHERE id_hotel = $id_hotel";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class HotelModel{
         }
     }
 
-    function actualizarHotel($hotelId,$nombreHotel,$direccion,$calificacion,$destinoId){
+    function actualizarHotel($id_hotel,$nombre_hotel,$direccion,$telefono,$correo_electronico,$lugar,$id_proveedor){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE hoteles SET nombre_hotel = $nombreHotel,direccion = $direccion,calificacion = $calificacion,id_destino = $destinoId WHERE id_hotel = $hotelId";
+        $sentencia = "UPDATE hoteles SET nombre_hotel = $nombre_hotel ,direccion = $direccion,telefono = $telefono,correo_electronico = $correo_electronico,lugar = $lugar,id_proveedor = $id_proveedor WHERE id_hotel = $id_hotel";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -62,11 +62,11 @@ class HotelModel{
         
     }
 
-    function borrarHotel($hotelId){
+    function borrarHotel($id_hotel){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM hoteles WHERE id_hotel = $hotelId ";
+		$sentencia = "DELETE FROM hoteles WHERE id_hotel = $id_hotel ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

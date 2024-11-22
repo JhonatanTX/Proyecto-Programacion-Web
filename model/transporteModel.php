@@ -5,11 +5,11 @@ class TransporteModel{
     function __construct(){ 
     }
     
-    function crearTransporte($nombreEmpresa,$tipoTransporte,$costo,$paqueteId){
+    function crearTransporte($tipo_transporte,$id_proveedor,$numero_servicio,$precio,$fecha_salida,$destino){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO transportes (nombre_empresa,tipo_transporte,costo,id_paquete) VALUES  ($nombreEmpresa,$tipoTransporte,$costo,$paqueteId)";
+        $sentencia = "INSERT INTO transportes (tipo_transporte,id_proveedor,numero_servicio,precio,fecha_salida,destino) VALUES  ($tipo_transporte,$id_proveedor,$numero_servicio,$precio,$fecha_salida,$destino)";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -19,7 +19,7 @@ class TransporteModel{
         }
     }
 
-    function listarReserva(){
+    function listarTransporte(){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         $sentencia = "SELECT * FROM transportes";
@@ -35,10 +35,10 @@ class TransporteModel{
         }
     }
 
-    function obtenerReserva($transporteId){
+    function obtenerTransporte($id_transporte){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT nombre_empresa,tipo_transporte,costo,id_paquete FROM transportes WHERE id_transporte = $transporteId";
+        $sentencia = "SELECT tipo_transporte,id_proveedor,numero_servicio,precio,fecha_salida,destino FROM transportes WHERE id_transporte = $id_transporte";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class TransporteModel{
         }
     }
 
-    function actualizarReserva($transporteId,$nombreEmpresa,$tipoTransporte,$costo,$paqueteId){
+    function actualizarTransporte($id_transporte,$tipo_transporte,$id_proveedor,$numero_servicio,$precio,$fecha_salida,$destino){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE transportes SET nombre_empresa = $nombreEmpresa,tipo_transporte = $tipoTransporte,costo = $costo,id_paquete = $paqueteId WHERE id_transporte = $transporteId";
+        $sentencia = "UPDATE transportes SET tipo_transporte = $tipo_transporte,id_proveedor = $id_proveedor,numero_servicio = $numero_servicio,precio = $precio,fecha_salida = $fecha_salida,destino = $destino WHERE id_transporte = $id_transporte";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -62,11 +62,11 @@ class TransporteModel{
         
     }
 
-    function borrarReserva($transporteId){
+    function borrarTransporte($id_transporte){
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM transportes WHERE id_transporte = $transporteId ";
+		$sentencia = "DELETE FROM transportes WHERE id_transporte = $id_transporte ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){
