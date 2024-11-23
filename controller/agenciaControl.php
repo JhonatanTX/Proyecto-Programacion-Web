@@ -20,15 +20,15 @@ switch ($opcion) {
 	case 'login-procesar': //VERIFICAR ADMINISTRADOR
 		// code...
 
-		$usuarioA = $_POST['usuarioA'];
-		$contraseñaA = sha1($_POST['contraseñaA']);
+		$nombre = $_POST['nombre'];
+		$contraseña = sha1($_POST['contraseña']);
 
 
 		$objModel = new adminModel();
-		$result = $objModel->verUsuario($usuarioA,$contraseñaA);
+		$result = $objModel->verUsuario($nombre,$contraseña);
 
 		if($result == 1){
-			header("Location: TiendaControl.php?opcion=empleado-listado");
+			header("Location: agenciaControl.php?opcion=empleado-listado");
 		}else{
 			echo "Error en el usuario o clave";
 		}
@@ -51,27 +51,28 @@ switch ($opcion) {
 	case 'empleado-eliminar':
 
 		$objEmp = new EmpleadoModel();
-		$idEmpleado = $_GET['idEmp'];
-		$resultEmpleados = $objEmp->borrarEmpleado($idEmpleado);
+		$id_empleado = $_GET['id_empleado'];
+		$resultEmpleados = $objEmp->borrarEmpleado($id_empleado);
 
 		if ($resultEmpleados == 1) {
 			$msg = "El registro se borro correctamente";
 
-			header("Location: TiendaControl.php?opcion=empleado-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=empleado-listado&msg=$msg");
 		}
 
 		break;
 	
 	case 'empleado-editar':
-			$idEmpleado = $_GET['idEmp'];
+			$id_empleado = $_GET['id_empleado'];
 			$objEmp = new EmpleadoModel();
-			$empleado = $objEmp->obtenerEmpleado($idEmpleado);
+			$empleado = $objEmp->obtenerEmpleado($id_empleado);
 	
 			if ($empleado) {
 				// Almacena los datos del empleado para mostrarlos en el formulario
-				$usuarioA = $empleado['usuario'];
-				$contraseñaA = ''; // Deja el campo de contraseña vacío
+				$nombre = $empleado['nombre'];
+				$puesto = $empleado['puesto'];
 				$dni = $empleado['dni'];
+				$contraseña = ''; // Deja el campo de contraseña vacío
 				include("../views/template/header.php");
 				include("../views/template/menu.php");
 				include("../views/empleados/editar.php");
@@ -82,17 +83,17 @@ switch ($opcion) {
 			break;
 	
 	case 'empleado-editar-procesar':
-			$idEmp = $_POST['idEmp'];
-			$usuarioA = $_POST['usuarioA'];
-			$contraseñaA = sha1($_POST['contraseñaA']);
+			$id_empleado = $_POST['id_empleado'];
+			$nombre = $_POST['nombre'];
+			$contraseña = sha1($_POST['contraseña']);
 			$dni = $_POST['dni'];
 	
 			$objEmp = new EmpleadoModel();
-			$resultEmpleados = $objEmp->actualizarEmpleado($idEmp, $usuarioA, $contraseñaA, $dni);
+			$resultEmpleados = $objEmp->actualizarEmpleado($id_empleado, $nombre, $contraseña, $dni);
 	
 			if ($resultEmpleados == 1) {
 				$msg = "El empleado se actualizó correctamente.";
-				header("Location: TiendaControl.php?opcion=empleado-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=empleado-listado&msg=$msg");
 			} else {
 				echo "Error al actualizar el empleado.";
 			}
@@ -110,17 +111,17 @@ switch ($opcion) {
 
 	case 'empleado-nuevo-procesar':
 
-		$usuarioA = $_POST['usuarioA'];
-		$contraseñaA = sha1($_POST['contraseñaA']);
+		$nombre = $_POST['nombre'];
+		$contraseña = sha1($_POST['contraseña']);
 		$dni = $_POST['dni'];
 
 		$objEmp = new EmpleadoModel();
-		$resultEmpleados = $objEmp->crearEmpleado($usuarioA,$contraseñaA,$dni);
+		$resultEmpleados = $objEmp->crearEmpleado($nombre,$contraseña,$dni);
 
 		if ($resultEmpleados == 1) {
 			$msg = "Se creo un nuevo empleado";
 
-			header("Location: TiendaControl.php?opcion=empleado-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=empleado-listado&msg=$msg");
 		}
 
 		break;
@@ -157,7 +158,7 @@ switch ($opcion) {
 		if ($resultCategorias == 1) {
 			$msg = "Se creo una nueva categoria";
 	
-			header("Location: TiendaControl.php?opcion=categoria-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=categoria-listado&msg=$msg");
 		}
 	
 		break;
@@ -171,7 +172,7 @@ switch ($opcion) {
 		if ($resultCategorias == 1) {
 			$msg = "La categoria se borro correctamente";
 	
-			header("Location: TiendaControl.php?opcion=categoria-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=categoria-listado&msg=$msg");
 		}
 	
 		break;	
@@ -202,7 +203,7 @@ switch ($opcion) {
 	
 			if ($resultCategorias == 1) {
 				$msg = "La categoria se actualizó correctamente.";
-				header("Location: TiendaControl.php?opcion=categoria-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=categoria-listado&msg=$msg");
 			} else {
 				echo "Error al actualizar la categoria.";
 			}
@@ -245,7 +246,7 @@ switch ($opcion) {
 		if ($resultClientes == 1) {
 			$msg = "Se creo un nuevo cliente";
 
-			header("Location: TiendaControl.php?opcion=cliente-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
 		}
 
 		break;
@@ -259,7 +260,7 @@ switch ($opcion) {
 		if ($resultClientes == 1) {
 			$msg = "El cliente se borro correctamente";
 
-			header("Location: TiendaControl.php?opcion=cliente-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
 		}
 
 		break;
@@ -300,7 +301,7 @@ switch ($opcion) {
 	
 			if ($resultClientes == 1) {
 				$msg = "El cliente se actualizó correctamente.";
-				header("Location: TiendaControl.php?opcion=cliente-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
 			} else {
 				echo "Error al actualizar el cliente.";
 			}
@@ -353,7 +354,7 @@ switch ($opcion) {
 			if ($resultProductos == 1) {
 				$msg = "Se ingreso un nuevo producto";
 		
-				header("Location: TiendaControl.php?opcion=producto-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=producto-listado&msg=$msg");
 			}
 		
 			break;
@@ -367,7 +368,7 @@ switch ($opcion) {
 			if ($resultProductos == 1) {
 				$msg = "El producto se borro correctamente";
 		
-				header("Location: TiendaControl.php?opcion=producto-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=producto-listado&msg=$msg");
 			}
 		
 			break;
@@ -423,7 +424,7 @@ switch ($opcion) {
 		
 		if ($resultProductos == 1) {
 			$msg = "El producto se actualizó correctamente.";
-			header("Location: TiendaControl.php?opcion=producto-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=producto-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el producto.";
 		}
@@ -467,7 +468,7 @@ switch ($opcion) {
 		if ($resultProveedores == 1) {
 			$msg = "Se creo un nuevo proveedor";
 
-			header("Location: TiendaControl.php?opcion=proveedor-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
 		}
 
 		break;
@@ -481,7 +482,7 @@ switch ($opcion) {
 		if ($resultProveedores == 1) {
 			$msg = "El proveedor se borro correctamente";
 
-			header("Location: TiendaControl.php?opcion=proveedor-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
 		}
 
 		break;
@@ -524,7 +525,7 @@ switch ($opcion) {
 	
 			if ($resultProveedores == 1) {
 				$msg = "El proveedor se actualizó correctamente.";
-				header("Location: TiendaControl.php?opcion=proveedor-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
 			} else {
 				echo "Error al actualizar el proveedor.";
 			}
@@ -564,7 +565,7 @@ switch ($opcion) {
 		if ($resultDistribuidores == 1) {
 			$msg = "Se creo un nuevo distribuidor";
 
-			header("Location: TiendaControl.php?opcion=distribuidor-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=distribuidor-listado&msg=$msg");
 		}
 
 		break;
@@ -578,7 +579,7 @@ switch ($opcion) {
 		if ($resultDistribuidores == 1) {
 			$msg = "El distribuidor se borro correctamente";
 
-			header("Location: TiendaControl.php?opcion=distribuidor-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=distribuidor-listado&msg=$msg");
 		}
 
 		break;
@@ -613,7 +614,7 @@ switch ($opcion) {
 	
 			if ($resultDistribuidores == 1) {
 				$msg = "El distribuidor se actualizó correctamente.";
-				header("Location: TiendaControl.php?opcion=distribuidor-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=distribuidor-listado&msg=$msg");
 			} else {
 				echo "Error al actualizar el distribuidor.";
 			}
@@ -667,7 +668,7 @@ switch ($opcion) {
 			if ($resultCompras == 1) {
 				$msg = "Se ingreso una compra";
 		
-				header("Location: TiendaControl.php?opcion=compra-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=compra-listado&msg=$msg");
 			}
 		
 			break;
@@ -681,7 +682,7 @@ switch ($opcion) {
 		if ($resultCompras == 1) {
 			$msg = "La compra se borro correctamente";
 
-			header("Location: TiendaControl.php?opcion=compra-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=compra-listado&msg=$msg");
 		}
 
 		break;
@@ -736,7 +737,7 @@ switch ($opcion) {
 		
 		if ($resultCompras == 1) {
 			$msg = "La compra se actualizó correctamente.";
-			header("Location: TiendaControl.php?opcion=compra-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=compra-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar compra.";
 		}
