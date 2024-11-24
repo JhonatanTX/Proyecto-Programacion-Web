@@ -4,7 +4,7 @@ include("../models/empleadoModel.php");
 include("../models/HotelModel.php");
 include("../models/viajeModel.php");
 include("../models/clienteModel.php");
-include("../models/transporteModel.php");
+include("../models/TransporteModel.php");
 include("../models/proveedorModel.php");
 include("../models/pagoModel.php");
 include("../models/reservaModel.php");
@@ -428,8 +428,8 @@ switch ($opcion) {
 	
 	case 'transporte-listado':
 
-		$objTra = new transporteModel();
-		$resultProveedores = $objTra->listarTransporte();
+		$objTra = new TransporteModel();
+		$resultTransportes = $objTra->listarTransporte();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
@@ -450,16 +450,15 @@ switch ($opcion) {
 	case 'transporte-nuevo-procesar':
 
 		$tipo_transporte = $_POST['tipo_transporte'];
-		$nombre = $_POST['nombre'];
-		$direccion = $_POST['direccion'];
-		$ciudad = $_POST['ciudad'];
-		$codigopostal = $_POST['codigopostal'];
-		$celular = $_POST['celular'];
+		$numero_servicio = $_POST['numero_servicio'];
+		$precio = $_POST['precio'];
+		$fecha_salida = $_POST['fecha_salida'];
+		$destino = $_POST['destino'];
 
-		$objVia = new transporteModel();
-		$resultProveedores = $objVia->crearProveedor($transporte,$nombre,$direccion,$ciudad,$codigopostal,$celular);
+		$objTra = new TransporteModel();
+		$resultTransportes = $objTra->crearTransporte($tipo_transporte,$numero_servicio,$precio,$fecha_salida,$destino);
 
-		if ($resultProveedores == 1) {
+		if ($resultTransportes == 1) {
 			$msg = "Se creo un nuevo transporte";
 
 			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
@@ -469,11 +468,11 @@ switch ($opcion) {
 	
 	case 'transporte-eliminar':
 
-		$objVia = new transporteModel();
-		$idProveedor = $_GET['idProv'];
-		$resultProveedores = $objVia->borrarProveedor($idProveedor);
+		$objTra = new TransporteModel();
+		$id_transporte = $_GET['id_transporte'];
+		$resultTransportes = $objTra->borrarTransporte($id_transporte);
 
-		if ($resultProveedores == 1) {
+		if ($resultTransportes == 1) {
 			$msg = "El transporte se borro correctamente";
 
 			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
@@ -482,18 +481,17 @@ switch ($opcion) {
 		break;
 
 	case 'transporte-editar':
-			$idProveedor = $_GET['idProv'];
-			$objVia = new transporteModel();
-			$proveedor1 = $objVia->obtenerProveedor($idProveedor);
+			$id_transporte = $_GET['id_transporte'];
+			$objTra = new TransporteModel();
+			$transportes = $objTra->obtenerTransporte($id_transporte);
 	
-			if ($proveedor1) {
+			if ($transportes) {
 				
-				$transporte = $proveedor1['transporte'];
-				$nombre = $proveedor1['nombre'];
-				$direccion = $proveedor1['direccion'];
-				$ciudad = $proveedor1['ciudad'];
-				$codigopostal = $proveedor1['codigopostal'];
-				$celular = $proveedor1['celular'];
+				$tipo_transporte = $transportes['tipo_transporte'];
+				$numero_servicio = $transportes['numero_servicio'];
+				$precio = $transportes['precio'];
+				$fecha_salida = $transportes['fecha_salida'];
+				$destino = $transportes['destino'];
 				
 				include("../views/template/header.php");
 				include("../views/template/menu.php");
@@ -506,18 +504,17 @@ switch ($opcion) {
 	
 	case 'transporte-editar-procesar':
 
-			$idProv = $_POST['idProv'];
-			$transporte = $_POST['transporte'];
-			$nombre = $_POST['nombre'];
-			$direccion = $_POST['direccion'];
-			$ciudad = $_POST['ciudad'];
-			$codigopostal = $_POST['codigopostal'];
-			$celular = $_POST['celular'];
+			$id_transporte = $_POST['id_transporte'];
+			$tipo_transporte = $_POST['tipo_transporte'];
+			$numero_servicio = $_POST['numero_servicio'];
+			$precio = $_POST['precio'];
+			$fecha_salida = $_POST['fecha_salida'];
+			$destino = $_POST['destino'];
 	
-			$objVia = new transporteModel();
-			$resultProveedores = $objVia->actualizarProveedor($idProv,$transporte,$nombre,$direccion,$ciudad,$codigopostal,$celular);
+			$objVia = new TransporteModel();
+			$resultTransportes = $objVia->actualizarTransporte($id_transporte,$tipo_transporte,$numero_servicio,$precio,$fecha_salida,$destino);
 	
-			if ($resultProveedores == 1) {
+			if ($resultTransportes == 1) {
 				$msg = "El transporte se actualizó correctamente.";
 				header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
 			} else {
@@ -527,10 +524,10 @@ switch ($opcion) {
 	
 	// CASOS PARA DISTRIBUIDORES
 
-	case 'distribuidor-listado':
+	case 'proveedor-listado':
 
-		$objDis = new transporteModel();
-		$resultDistribuidores = $objDis->listarDistribuidor();
+		$objPro = new ProveedorModel();
+		$resultProveedores = $objPro->listarProveedor();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
@@ -539,7 +536,7 @@ switch ($opcion) {
 
 		break;
 		
-	case 'distribuidor-nuevo':
+	case 'proveedor-nuevo':
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
@@ -548,75 +545,90 @@ switch ($opcion) {
 
 		break;
 
-	case 'distribuidor-nuevo-procesar':
+	case 'proveedor-nuevo-procesar':
 
-		$distribuidor = $_POST['distribuidor'];
-		$celular = $_POST['celular'];
+		$nombre_empresa = $_POST['nombre_empresa'];
+		$tipo_servicio = $_POST['tipo_servicio'];
+		$contacto = $_POST['contacto'];
+		$direccion = $_POST['direccion'];
+		$telefono = $_POST['telefono'];
+		$correo_electronico = $_POST['correo_electronico'];
+		$tarifas = $_POST['tarifas'];
 
-		$objDis = new transporteModel();
-		$resultDistribuidores = $objDis->crearDistribuidor($distribuidor,$celular);
+		$objPro = new ProveedorModel();
+		$resultProveedores = $objPro->crearProveedor($nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas);
 
-		if ($resultDistribuidores == 1) {
-			$msg = "Se creo un nuevo distribuidor";
+		if ($resultProveedores == 1) {
+			$msg = "Se creo un nuevo proveedor";
 
-			header("Location: agenciaControll.php?opcion=distribuidor-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
 		}
 
 		break;
 	
-	case 'distribuidor-eliminar':
+	case 'proveedor-eliminar':
 
-		$objDis = new transporteModel();
-		$idDistribuidor = $_GET['idDis'];
-		$resultDistribuidores = $objDis->borrarDistribuidor($idDistribuidor);
+		$objPro = new ProveedorModel();
+		$id_proveedor = $_GET['id_proveedor'];
+		$resultProveedores = $objPro->borrarProveedor($id_proveedor);
 
-		if ($resultDistribuidores == 1) {
-			$msg = "El distribuidor se borro correctamente";
+		if ($resultProveedores == 1) {
+			$msg = "El proveedor se borro correctamente";
 
-			header("Location: agenciaControll.php?opcion=distribuidor-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
 		}
 
 		break;
 
-	case 'distribuidor-editar':
-			$idDistribuidor = $_GET['idDis'];
-			$objDis = new transporteModel();
-			$distribuidor1 = $objDis->obtenerDistribuidor($idDistribuidor);
+	case 'proveedor-editar':
+			$id_proveedor = $_GET['id_proveedor'];
+			$objPro = new ProveedorModel();
+			$proveedores = $objPro->obtenerProveedor($id_proveedor);
 	
-			if ($distribuidor1) {
+			if ($proveedores) {
 				
-				$distribuidor = $distribuidor1['distribuidor'];
-				$celular = $distribuidor1['celular'];
+				$nombre_empresa = $proveedores['nombre_empresa'];
+				$tipo_servicio = $proveedores['tipo_servicio'];
+				$contacto = $proveedores['contacto'];
+				$direccion = $proveedores['direccion'];
+				$telefono = $proveedores['telefono'];
+				$correo_electronico = $proveedores['correo_electronico'];
+				$tarifas = $proveedores['tarifas'];
 				
 				include("../views/template/header.php");
 				include("../views/template/menu.php");
 				include("../views/distribuidores/editar.php");
 				include("../views/template/footer.php");
 			} else {
-				echo "distribuidor no encontrado.";
+				echo "proveedor no encontrado.";
 			}
 			break;
 	
-	case 'distribuidor-editar-procesar':
+	case 'proveedor-editar-procesar':
 
-			$idDis = $_POST['idDis'];
-			$distribuidor = $_POST['distribuidor'];
-			$celular = $_POST['celular'];
+			$id_proveedor = $_POST['id_proveedor'];
+			$nombre_empresa = $_POST['nombre_empresa'];
+			$tipo_servicio = $_POST['tipo_servicio'];
+			$contacto = $_POST['contacto'];
+			$direccion = $_POST['direccion'];
+			$telefono = $_POST['telefono'];
+			$correo_electronico = $_POST['correo_electronico'];
+			$tarifas = $_POST['tarifas'];
 	
-			$objDis = new transporteModel();
-			$resultDistribuidores = $objDis->actualizarDistribuidor($idDis,$distribuidor,$celular);
+			$objPro = new ProveedorModel();
+			$resultProveedores = $objPro->actualizarDistribuidor($id_proveedor,$nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas);
 	
-			if ($resultDistribuidores == 1) {
-				$msg = "El distribuidor se actualizó correctamente.";
-				header("Location: agenciaControll.php?opcion=distribuidor-listado&msg=$msg");
+			if ($resultProveedores == 1) {
+				$msg = "El proveedor se actualizó correctamente.";
+				header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
 			} else {
-				echo "Error al actualizar el distribuidor.";
+				echo "Error al actualizar el proveedor.";
 			}
 			break;
 
 	// CASOS PARA PRODUCTOS PARA COMPRAR
 	
-	case 'compra-listado':
+	case 'pago-listado':
 
 		$objCom = new CompraModel();
 		$resultCompras = $objCom->listarCompra();
@@ -627,10 +639,10 @@ switch ($opcion) {
 		include("../views/template/footer.php");
 		break;
 	
-	case 'compra-nuevo':
+	case 'pago-nuevo':
 
-		$objDis = new transporteModel();
-    	$resultDistribuidores = $objDis->listarDistribuidor();
+		$objPro = new TransporteModel();
+    	$resultProveedores = $objPro->listarDistribuidor();
 
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->listarEmpleado();
@@ -648,47 +660,47 @@ switch ($opcion) {
 		
 		break;
 
-	case 'compra-nuevo-procesar':
+	case 'pago-nuevo-procesar':
 
 			$cliente = $_POST['cliente'];
 			$empleado = $_POST['empleado'];
 			$viaje = $_POST['viaje'];
 			$cantidad = $_POST['cantidad'];
-			$distribuidor = $_POST['distribuidor'];
+			$proveedor = $_POST['proveedor'];
 		
 			$objCom = new CompraModel();
-			$resultCompras = $objCom->crearCompra($cliente, $empleado, $viaje, $cantidad, $distribuidor);
+			$resultCompras = $objCom->crearCompra($cliente, $empleado, $viaje, $cantidad, $proveedor);
 		
 			if ($resultCompras == 1) {
-				$msg = "Se ingreso una compra";
+				$msg = "Se ingreso una pago";
 		
-				header("Location: agenciaControll.php?opcion=compra-listado&msg=$msg");
+				header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
 			}
 		
 			break;
 	
-	case 'compra-eliminar':
+	case 'pago-eliminar':
 
 		$objCom = new CompraModel();
 		$idCompra = $_GET['idCom'];
 		$resultCompras = $objCom->borrarCompra($idCompra);
 
 		if ($resultCompras == 1) {
-			$msg = "La compra se borro correctamente";
+			$msg = "La pago se borro correctamente";
 
-			header("Location: agenciaControll.php?opcion=compra-listado&msg=$msg");
+			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
 		}
 
 		break;
 
-	case 'compra-editar':
+	case 'pago-editar':
 		
 		$idCompra = $_GET['idCom'];
 		$objCom = new CompraModel();
 		$compras = $objCom->obtenerCompra($idCompra);
 	
-		$objDis = new transporteModel();
-    	$resultDistribuidores = $objDis->listarDistribuidor();
+		$objPro = new TransporteModel();
+    	$resultProveedores = $objPro->listarDistribuidor();
 
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->listarEmpleado();
@@ -706,34 +718,34 @@ switch ($opcion) {
 			$empleado = $compras['empleado'];
 			$viaje = $compras['viaje'];
 			$cantidad = $compras['cantidad'];
-			$distribuidor = $compras['distribuidor'];
+			$proveedor = $compras['proveedor'];
 	
 			include("../views/template/header.php");
 			include("../views/template/menu.php");
 			include("../views/detalles de pedidos/editar.php");
 			include("../views/template/footer.php");
 		} else {
-			echo "compra no encontrado.";
+			echo "pago no encontrado.";
 		}
 		break;
 	
-	case 'compra-editar-procesar':
+	case 'pago-editar-procesar':
 		
 		$idCom = $_POST['idCom'];
 		$cliente = $_POST['cliente'];
 		$empleado = $_POST['empleado'];
 		$viaje = $_POST['viaje'];
 		$cantidad = $_POST['cantidad'];
-		$distribuidor = $_POST['distribuidor'];
+		$proveedor = $_POST['proveedor'];
 
 		$objCom = new CompraModel();
-		$resultCompras = $objCom->actualizarCompra($idCom, $cliente, $empleado, $viaje, $cantidad, $distribuidor);
+		$resultCompras = $objCom->actualizarCompra($idCom, $cliente, $empleado, $viaje, $cantidad, $proveedor);
 		
 		if ($resultCompras == 1) {
-			$msg = "La compra se actualizó correctamente.";
-			header("Location: agenciaControll.php?opcion=compra-listado&msg=$msg");
+			$msg = "La pago se actualizó correctamente.";
+			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
 		} else {
-			echo "Error al actualizar compra.";
+			echo "Error al actualizar pago.";
 		}
 		break;
 
