@@ -132,9 +132,9 @@ switch ($opcion) {
 	
 	case 'hotel-listado':
 
-		$objetoHotel = new HotelModel();
-		$resultCategorias = $objetoHotel->listarHoteles();
-
+		$objHotel = new HotelModel();
+		$resultsHoteles = $objHotel->listarHotel();
+	
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
 		include("../views/hoteles/listado.php");
@@ -147,88 +147,95 @@ switch ($opcion) {
 		include("../views/template/menu.php");
 		include("../views/hoteles/nuevo.php");
 		include("../views/template/footer.php");
-	
 		break;
 	
 	case 'hotel-nuevo-procesar':
-	
+
 		$nombre_hotel = $_POST['nombre_hotel'];
 		$direccion = $_POST['direccion'];
 		$telefono = $_POST['telefono'];
 		$correo_electronico = $_POST['correo_electronico'];
 		$lugar = $_POST['lugar'];
+		$id_proveedor = $_POST['id_proveedor'];
+
+		$objHotel = new HotelModel();
+		$resultado = $objHotel->crearHotel($nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
 	
-		$objetoHotel = new HotelModel();
-		$resultCategorias = $objetoHotel->crearHotel($nombre_hotel,$direccion,$telefono,$correo_electronico,$lugar);
-	
-		if ($resultCategorias == 1) {
-			$msg = "Se creo una nueva hotel";
-	
+		if ($resultado == 1) {
+			$msg = "El hotel fue creado exitosamente.";
 			header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
+		} else {
+			echo "Error al crear el hotel.";
 		}
-	
 		break;
 	
 	case 'hotel-eliminar':
 
-		$objetoHotel = new HotelModel();
 		$id_hotel = $_GET['id_hotel'];
-		$resultCategorias = $objetoHotel->borrarHotel($id_hotel);
+
+		$objHotel = new HotelModel();
+		$resultado = $objHotel->borrarHotel($id_hotel);
 	
-		if ($resultCategorias == 1) {
-			$msg = "La hotel se borro correctamente";
-	
+		if ($resultado == 1) {
+			$msg = "El hotel fue eliminado exitosamente.";
 			header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar el hotel.";
 		}
-	
-		break;	
+		break;
 	
 	case 'hotel-editar':
-			$id_hotel = $_GET['id_hotel'];
-			$objetoHotel = new HotelModel();
-			$hoteles = $objetoHotel->obtenerHotel($id_hotel);
+
+		$id_hotel = $_GET['id_hotel'];
+
+		$objHotel = new HotelModel();
+		$hotel = $objHotel->obtenerHotel($id_hotel);
 	
-			if ($hoteles) {
-				// Almacena los datos del empleado para mostrarlos en el formulario
-				$nombre_hotel = $hoteles['nombre'];
-				$direccion = $hoteles['direccion'];
-				$telefono = $hoteles['telefono'];
-				$correo_electronico = $hoteles['correo_electronico'];
-				$lugar = $hoteles['lugar'];
-				include("../views/template/header.php");
-				include("../views/template/menu.php");
-				include("../views/hoteles/editar.php");
-				include("../views/template/footer.php");
-			} else {
-				echo "hoteles no encontrado.";
-			}
-			break;
+		if ($hotel) {
+			$nombre_hotel = $hotel['nombre_hotel'];
+			$direccion = $hotel['direccion'];
+			$telefono = $hotel['telefono'];
+			$correo_electronico = $hotel['correo_electronico'];
+			$lugar = $hotel['lugar'];
+			$id_proveedor = $hotel['id_proveedor'];
+	
+			include("../views/template/header.php");
+			include("../views/template/menu.php");
+			include("../views/hoteles/editar.php");
+			include("../views/template/footer.php");
+		} else {
+			echo "Hotel no encontrado.";
+		}
+		break;
 	
 	case 'hotel-editar-procesar':
-			$id_hotel = $_POST['id_hotel'];
-			$nombre_hotel = $_POST['nombre_hotel'];
-			$direccion = $_POST['direccion'];
-			$telefono = $_POST['telefono'];
-			$correo_electronico = $_POST['correo_electronico'];
-			$lugar = $_POST['lugar'];
 
-			$objetoHotel = new HotelModel();
-			$resultCategorias = $objetoHotel->actualizarHotel($id_hotel, $hotel);
+		$id_hotel = $_POST['id_hotel'];
+		$nombre_hotel = $_POST['nombre_hotel'];
+		$direccion = $_POST['direccion'];
+		$telefono = $_POST['telefono'];
+		$correo_electronico = $_POST['correo_electronico'];
+		$lugar = $_POST['lugar'];
+		$id_proveedor = $_POST['id_proveedor'];
+
+		$objHotel = new HotelModel();
+		$resultado = $objHotel->actualizarHotel($id_hotel, $nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
 	
-			if ($resultCategorias == 1) {
-				$msg = "La hotel se actualizó correctamente.";
-				header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
-			} else {
-				echo "Error al actualizar la hotel.";
-			}
-			break;	
+		if ($resultado == 1) {
+			$msg = "El hotel fue actualizado correctamente.";
+			header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
+		} else {
+			echo "Error al actualizar el hotel.";
+		}
+		break;
+	
 
 	// CASO PARA CLIENTES
 
 	case 'cliente-listado':
 
-		$objCli = new clienteModel();
-		$resultClientes = $objCli->listarCliente();
+		$objCliente = new ClienteModel();
+		$resultsClientes = $objCliente->listarCliente();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
@@ -242,309 +249,314 @@ switch ($opcion) {
 		include("../views/template/menu.php");
 		include("../views/clientes/nuevo.php");
 		include("../views/template/footer.php");
-
 		break;
-
+	
 	case 'cliente-nuevo-procesar':
 
 		$nombre = $_POST['nombre'];
 		$apellido = $_POST['apellido'];
-		$correo_electronico = sha1($_POST['correo_electronico']);
+		$correo_electronico = $_POST['correo_electronico'];
 		$telefono = $_POST['telefono'];
 		$direccion = $_POST['direccion'];
 
-		$objCli = new clienteModel();
-		$resultClientes = $objCli->crearCliente($nombre,$apellido,$correo_electronico,$telefono,$direccion);
-
-		if ($resultClientes == 1) {
-			$msg = "Se creo un nuevo cliente";
-
+		$objCliente = new ClienteModel();
+		$resultado = $objCliente->crearCliente($nombre, $apellido, $correo_electronico, $telefono, $direccion);
+	
+		if ($resultado == 1) {
+			$msg = "El cliente fue creado exitosamente.";
 			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
+		} else {
+			echo "Error al crear el cliente.";
 		}
-
 		break;
 	
 	case 'cliente-eliminar':
 
-		$objCli = new clienteModel();
 		$id_cliente = $_GET['id_cliente'];
-		$resultClientes = $objCli->borrarCliente($id_cliente);
 
-		if ($resultClientes == 1) {
-			$msg = "El cliente se borro correctamente";
-
+		$objCliente = new ClienteModel();
+		$resultado = $objCliente->borrarCliente($id_cliente);
+	
+		if ($resultado == 1) {
+			$msg = "El cliente fue eliminado exitosamente.";
 			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar el cliente.";
 		}
-
 		break;
 	
-		case 'cliente-editar':
-			$id_cliente = $_GET['id_cliente'];
-			$objCli = new clienteModel();
-			$cliente = $objCli->obtenerCliente($id_cliente);
+	case 'cliente-editar':
+
+		$id_cliente = $_GET['id_cliente'];
+
+		$objCliente = new ClienteModel();
+		$cliente = $objCliente->obtenerCliente($id_cliente);
 	
-			if ($cliente) {
-				// Almacena los datos del empleado para mostrarlos en el formulario
-				$nombre = $cliente['nombre'];
-				$apellido = $cliente['apellido'];
-				$correo_electronico = 'correo_electronico'; 
-				$telefono = $cliente['telefono'];
-				$direccion = $cliente['direccion']; 
-				include("../views/template/header.php");
-				include("../views/template/menu.php");
-				include("../views/clientes/editar.php");
-				include("../views/template/footer.php");
-			} else {
-				echo "Cliente no encontrado.";
-			}
-			break;
+		if ($cliente) {
+			$nombre = $cliente['nombre'];
+			$apellido = $cliente['apellido'];
+			$correo_electronico = $cliente['correo_electronico'];
+			$telefono = $cliente['telefono'];
+			$direccion = $cliente['direccion'];
+	
+			include("../views/template/header.php");
+			include("../views/template/menu.php");
+			include("../views/clientes/editar.php");
+			include("../views/template/footer.php");
+		} else {
+			echo "Cliente no encontrado.";
+		}
+		break;
 	
 	case 'cliente-editar-procesar':
-			$id_cliente = $_POST['id_cliente'];
-			$nombre = $_POST['nombre'];
-			$apellido = $_POST['apellido'];
-			$correo_electronico = sha1($_POST['correo_electronico']);
-			$telefono = $_POST['telefono'];
-			$direccion = $_POST['direccion'];
+
+		$id_cliente = $_POST['id_cliente'];
+		$nombre = $_POST['nombre'];
+		$apellido = $_POST['apellido'];
+		$correo_electronico = $_POST['correo_electronico'];
+		$telefono = $_POST['telefono'];
+		$direccion = $_POST['direccion'];
+
+		$objCliente = new ClienteModel();
+		$resultado = $objCliente->actualizarCliente($id_cliente, $nombre, $apellido, $correo_electronico, $telefono, $direccion);
 	
-			$objCli = new clienteModel();
-			$resultClientes = $objCli->actualizarCliente($id_cliente, $nombre, $apellido, $correo_electronico, $telefono, $direccion);
+		if ($resultado == 1) {
+			$msg = "El cliente fue actualizado correctamente.";
+			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
+		} else {
+			echo "Error al actualizar el cliente.";
+		}
+		break;
 	
-			if ($resultClientes == 1) {
-				$msg = "El cliente se actualizó correctamente.";
-				header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
-			} else {
-				echo "Error al actualizar el cliente.";
-			}
-			break;
 
 	// CASOS PARA PRODUCTOS
 	
 	case 'viaje-listado':
 
-		$objVia = new ViajelModel();
-		$resultProductos = $objVia->listarViaje();
+		$objViaje = new ViajeModel();
+		$resultsViajes = $objViaje->listarViaje();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
 		include("../views/viajes/listado.php");
 		include("../views/template/footer.php");
-
 		break;
-
+	
 	case 'viaje-nuevo':
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
 		include("../views/viajes/nuevo.php");
 		include("../views/template/footer.php");
-		
 		break;
-
+	
 	case 'viaje-nuevo-procesar':
 
-			$nombre_paquete = $_POST['nombre_paquete'];
-			$descripcion = $_POST['descripcion'];
-			$transporte = $_POST['transporte'];
-			$precio = $_POST['precio'];
-			$fechas_disponibles = $_POST['fechas_disponibles'];
-			$duracion = $_POST['duracion'];
-			$transporte = $_POST['transporte'];
-		
-			$objVia = new ViajeModel();
-			$resultProductos = $objVia->crearProducto($nombre_paquete, $descripcion, $transporte, $precio, $fechas_disponibles, $duracion, $transporte);
-		
-			if ($resultProductos == 1) {
-				$msg = "Se ingreso un nuevo viaje";
-		
-				header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
-			}
-		
-			break;
+		$nombre_paquete = $_POST['nombre_paquete'];
+		$descripcion = $_POST['descripcion'];
+		$destinos = $_POST['destinos'];
+		$precio = $_POST['precio'];
+		$fechas_disponibles = $_POST['fechas_disponibles'];
+		$duracion = $_POST['duracion'];
+		$transporte = $_POST['transporte'];
 
+		$objViaje = new ViajeModel();
+		$resultado = $objViaje->crearViaje($nombre_paquete, $descripcion, $destinos, $precio, $fechas_disponibles, $duracion, $transporte);
+	
+		if ($resultado == 1) {
+			$msg = "El viaje fue creado exitosamente.";
+			header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
+		} else {
+			echo "Error al crear el viaje.";
+		}
+		break;
+	
 	case 'viaje-eliminar':
 
-			$objVia = new ViajeModel();
-			$id_viaje = $_GET['id_viaje'];
-			$resultProductos = $objVia->borrarProducto($id_viaje);
-		
-			if ($resultProductos == 1) {
-				$msg = "El viaje se borro correctamente";
-		
-				header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
-			}
-		
-			break;
-
-	case 'viaje-editar':
-		
 		$id_viaje = $_GET['id_viaje'];
-		$objVia = new ViajeModel();
-		$viajes = $objVia->obtenerProducto($id_viaje);
+
+		$objViaje = new ViajeModel();
+		$resultado = $objViaje->borrarViaje($id_viaje);
 	
+		if ($resultado == 1) {
+			$msg = "El viaje fue eliminado exitosamente.";
+			header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar el viaje.";
+		}
+		break;
 	
-		if ($viajes) {
-			
-			$nombre_paquete = $viajes['nombre_paquete'];
-			$descripcion = $viajes['descripcion'];
-			$transporte = $viajes['transporte'];
-			$precio = $viajes['precio'];
-			$fechas_disponibles = $viajes['fechas_disponibles'];
-			$duracion = $viajes['duracion'];
-			$transporte = $viajes['transporte'];
+	case 'viaje-editar':
+
+		$id_viaje = $_GET['id_viaje'];
+
+		$objViaje = new ViajeModel();
+		$viaje = $objViaje->obtenerViaje($id_viaje);
+	
+		if ($viaje) {
+			$nombre_paquete = $viaje['nombre_paquete'];
+			$descripcion = $viaje['descripcion'];
+			$destinos = $viaje['destinos'];
+			$precio = $viaje['precio'];
+			$fechas_disponibles = $viaje['fechas_disponibles'];
+			$duracion = $viaje['duracion'];
+			$transporte = $viaje['transporte'];
 	
 			include("../views/template/header.php");
 			include("../views/template/menu.php");
 			include("../views/viajes/editar.php");
 			include("../views/template/footer.php");
 		} else {
-			echo "Producto no encontrado.";
+			echo "Viaje no encontrado.";
 		}
 		break;
 	
 	case 'viaje-editar-procesar':
-		
+
 		$id_viaje = $_POST['id_viaje'];
 		$nombre_paquete = $_POST['nombre_paquete'];
 		$descripcion = $_POST['descripcion'];
-		$transporte = $_POST['transporte'];
+		$destinos = $_POST['destinos'];
 		$precio = $_POST['precio'];
 		$fechas_disponibles = $_POST['fechas_disponibles'];
 		$duracion = $_POST['duracion'];
 		$transporte = $_POST['transporte'];
 
-		$objVia = new HotelModel();
-		$resultProductos = $objVia->actualizarProducto($id_viaje, $nombre_paquete, $descripcion, $transporte, $precio, $fechas_disponibles, $duracion, $transporte);
-		
-		if ($resultProductos == 1) {
-			$msg = "El viaje se actualizó correctamente.";
+		$objViaje = new ViajeModel();
+		$resultado = $objViaje->actualizarViaje($id_viaje, $nombre_paquete, $descripcion, $destinos, $precio, $fechas_disponibles, $duracion, $transporte);
+	
+		if ($resultado == 1) {
+			$msg = "El viaje fue actualizado correctamente.";
 			header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el viaje.";
 		}
 		break;
+	
 
 	// CASOS PARA PROVEEDORES
 	
 	case 'transporte-listado':
 
-		$objTra = new TransporteModel();
-		$resultTransportes = $objTra->listarTransporte();
+		$objTransporte = new TransporteModel();
+		$resultsTransportes = $objTransporte->listarTransporte();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/proveedores/listado.php");
+		include("../views/transportes/listado.php");
 		include("../views/template/footer.php");
-
 		break;
-		
+	
 	case 'transporte-nuevo':
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/proveedores/nuevo.php");
+		include("../views/transportes/nuevo.php");
 		include("../views/template/footer.php");
-
 		break;
-
+	
 	case 'transporte-nuevo-procesar':
 
 		$tipo_transporte = $_POST['tipo_transporte'];
+		$id_proveedor = $_POST['id_proveedor'];
 		$numero_servicio = $_POST['numero_servicio'];
 		$precio = $_POST['precio'];
 		$fecha_salida = $_POST['fecha_salida'];
 		$destino = $_POST['destino'];
 
-		$objTra = new TransporteModel();
-		$resultTransportes = $objTra->crearTransporte($tipo_transporte,$numero_servicio,$precio,$fecha_salida,$destino);
-
-		if ($resultTransportes == 1) {
-			$msg = "Se creo un nuevo transporte";
-
+		$objTransporte = new TransporteModel();
+		$resultado = $objTransporte->crearTransporte($tipo_transporte, $id_proveedor, $numero_servicio, $precio, $fecha_salida, $destino);
+	
+		if ($resultado == 1) {
+			$msg = "El transporte fue creado exitosamente.";
 			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
+		} else {
+			echo "Error al crear el transporte.";
 		}
-
 		break;
 	
 	case 'transporte-eliminar':
 
-		$objTra = new TransporteModel();
 		$id_transporte = $_GET['id_transporte'];
-		$resultTransportes = $objTra->borrarTransporte($id_transporte);
 
-		if ($resultTransportes == 1) {
-			$msg = "El transporte se borro correctamente";
-
-			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
-		}
-
-		break;
-
-	case 'transporte-editar':
-			$id_transporte = $_GET['id_transporte'];
-			$objTra = new TransporteModel();
-			$transportes = $objTra->obtenerTransporte($id_transporte);
+		$objTransporte = new TransporteModel();
+		$resultado = $objTransporte->borrarTransporte($id_transporte);
 	
-			if ($transportes) {
-				
-				$tipo_transporte = $transportes['tipo_transporte'];
-				$numero_servicio = $transportes['numero_servicio'];
-				$precio = $transportes['precio'];
-				$fecha_salida = $transportes['fecha_salida'];
-				$destino = $transportes['destino'];
-				
-				include("../views/template/header.php");
-				include("../views/template/menu.php");
-				include("../views/proveedores/editar.php");
-				include("../views/template/footer.php");
-			} else {
-				echo "transporte no encontrado.";
-			}
-			break;
+		if ($resultado == 1) {
+			$msg = "El transporte fue eliminado exitosamente.";
+			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar el transporte.";
+		}
+		break;
+	
+	case 'transporte-editar':
+
+		$id_transporte = $_GET['id_transporte'];
+
+		$objTransporte = new TransporteModel();
+		$transporte = $objTransporte->obtenerTransporte($id_transporte);
+	
+		if ($transporte) {
+			$tipo_transporte = $transporte['tipo_transporte'];
+			$id_proveedor = $transporte['id_proveedor'];
+			$numero_servicio = $transporte['numero_servicio'];
+			$precio = $transporte['precio'];
+			$fecha_salida = $transporte['fecha_salida'];
+			$destino = $transporte['destino'];
+	
+			include("../views/template/header.php");
+			include("../views/template/menu.php");
+			include("../views/transportes/editar.php");
+			include("../views/template/footer.php");
+		} else {
+			echo "Transporte no encontrado.";
+		}
+		break;
 	
 	case 'transporte-editar-procesar':
 
-			$id_transporte = $_POST['id_transporte'];
-			$tipo_transporte = $_POST['tipo_transporte'];
-			$numero_servicio = $_POST['numero_servicio'];
-			$precio = $_POST['precio'];
-			$fecha_salida = $_POST['fecha_salida'];
-			$destino = $_POST['destino'];
+		$id_transporte = $_POST['id_transporte'];
+		$tipo_transporte = $_POST['tipo_transporte'];
+		$id_proveedor = $_POST['id_proveedor'];
+		$numero_servicio = $_POST['numero_servicio'];
+		$precio = $_POST['precio'];
+		$fecha_salida = $_POST['fecha_salida'];
+		$destino = $_POST['destino'];
+
+		$objTransporte = new TransporteModel();
+		$resultado = $objTransporte->actualizarTransporte($id_transporte, $tipo_transporte, $id_proveedor, $numero_servicio, $precio, $fecha_salida, $destino);
 	
-			$objVia = new TransporteModel();
-			$resultTransportes = $objVia->actualizarTransporte($id_transporte,$tipo_transporte,$numero_servicio,$precio,$fecha_salida,$destino);
+		if ($resultado == 1) {
+			$msg = "El transporte fue actualizado correctamente.";
+			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
+		} else {
+			echo "Error al actualizar el transporte.";
+		}
+		break;
 	
-			if ($resultTransportes == 1) {
-				$msg = "El transporte se actualizó correctamente.";
-				header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
-			} else {
-				echo "Error al actualizar el transporte.";
-			}
-			break;
 	
 	// CASOS PARA DISTRIBUIDORES
 
 	case 'proveedor-listado':
 
-		$objPro = new ProveedorModel();
-		$resultProveedores = $objPro->listarProveedor();
+		$objProveedor = new ProveedorModel();
+		$resultsProveedores = $objProveedor->listarProveedor();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/distribuidores/listado.php");
+		include("../views/proveedores/listado.php");
 		include("../views/template/footer.php");
-
 		break;
-		
+	
 	case 'proveedor-nuevo':
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/distribuidores/nuevo.php");
+		include("../views/proveedores/nuevo.php");
 		include("../views/template/footer.php");
-
 		break;
-
+	
 	case 'proveedor-nuevo-procesar':
 
 		$nombre_empresa = $_POST['nombre_empresa'];
@@ -555,210 +567,280 @@ switch ($opcion) {
 		$correo_electronico = $_POST['correo_electronico'];
 		$tarifas = $_POST['tarifas'];
 
-		$objPro = new ProveedorModel();
-		$resultProveedores = $objPro->crearProveedor($nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas);
-
-		if ($resultProveedores == 1) {
-			$msg = "Se creo un nuevo proveedor";
-
+		$objProveedor = new ProveedorModel();
+		$resultado = $objProveedor->crearProveedor($nombre_empresa, $tipo_servicio, $contacto, $direccion, $telefono, $correo_electronico, $tarifas);
+	
+		if ($resultado == 1) {
+			$msg = "El proveedor fue creado exitosamente.";
 			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
+		} else {
+			echo "Error al crear el proveedor.";
 		}
-
 		break;
 	
 	case 'proveedor-eliminar':
 
-		$objPro = new ProveedorModel();
 		$id_proveedor = $_GET['id_proveedor'];
-		$resultProveedores = $objPro->borrarProveedor($id_proveedor);
 
-		if ($resultProveedores == 1) {
-			$msg = "El proveedor se borro correctamente";
-
-			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
-		}
-
-		break;
-
-	case 'proveedor-editar':
-			$id_proveedor = $_GET['id_proveedor'];
-			$objPro = new ProveedorModel();
-			$proveedores = $objPro->obtenerProveedor($id_proveedor);
+		$objProveedor = new ProveedorModel();
+		$resultado = $objProveedor->borrarProveedor($id_proveedor);
 	
-			if ($proveedores) {
-				
-				$nombre_empresa = $proveedores['nombre_empresa'];
-				$tipo_servicio = $proveedores['tipo_servicio'];
-				$contacto = $proveedores['contacto'];
-				$direccion = $proveedores['direccion'];
-				$telefono = $proveedores['telefono'];
-				$correo_electronico = $proveedores['correo_electronico'];
-				$tarifas = $proveedores['tarifas'];
-				
-				include("../views/template/header.php");
-				include("../views/template/menu.php");
-				include("../views/distribuidores/editar.php");
-				include("../views/template/footer.php");
-			} else {
-				echo "proveedor no encontrado.";
-			}
-			break;
+		if ($resultado == 1) {
+			$msg = "El proveedor fue eliminado exitosamente.";
+			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar el proveedor.";
+		}
+		break;
+	
+	case 'proveedor-editar':
+
+		$id_proveedor = $_GET['id_proveedor'];
+
+		$objProveedor = new ProveedorModel();
+		$proveedor = $objProveedor->obtenerProveedor($id_proveedor);
+	
+		if ($proveedor) {
+			$nombre_empresa = $proveedor['nombre_empresa'];
+			$tipo_servicio = $proveedor['tipo_servicio'];
+			$contacto = $proveedor['contacto'];
+			$direccion = $proveedor['direccion'];
+			$telefono = $proveedor['telefono'];
+			$correo_electronico = $proveedor['correo_electronico'];
+			$tarifas = $proveedor['tarifas'];
+	
+			include("../views/template/header.php");
+			include("../views/template/menu.php");
+			include("../views/proveedores/editar.php");
+			include("../views/template/footer.php");
+		} else {
+			echo "Proveedor no encontrado.";
+		}
+		break;
 	
 	case 'proveedor-editar-procesar':
 
-			$id_proveedor = $_POST['id_proveedor'];
-			$nombre_empresa = $_POST['nombre_empresa'];
-			$tipo_servicio = $_POST['tipo_servicio'];
-			$contacto = $_POST['contacto'];
-			$direccion = $_POST['direccion'];
-			$telefono = $_POST['telefono'];
-			$correo_electronico = $_POST['correo_electronico'];
-			$tarifas = $_POST['tarifas'];
+		$id_proveedor = $_POST['id_proveedor'];
+		$nombre_empresa = $_POST['nombre_empresa'];
+		$tipo_servicio = $_POST['tipo_servicio'];
+		$contacto = $_POST['contacto'];
+		$direccion = $_POST['direccion'];
+		$telefono = $_POST['telefono'];
+		$correo_electronico = $_POST['correo_electronico'];
+		$tarifas = $_POST['tarifas'];
+
+		$objProveedor = new ProveedorModel();
+		$resultado = $objProveedor->actualizarProveedor($id_proveedor, $nombre_empresa, $tipo_servicio, $contacto, $direccion, $telefono, $correo_electronico, $tarifas);
 	
-			$objPro = new ProveedorModel();
-			$resultProveedores = $objPro->actualizarDistribuidor($id_proveedor,$nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas);
+		if ($resultado == 1) {
+			$msg = "El proveedor fue actualizado correctamente.";
+			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
+		} else {
+			echo "Error al actualizar el proveedor.";
+		}
+		break;
 	
-			if ($resultProveedores == 1) {
-				$msg = "El proveedor se actualizó correctamente.";
-				header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
-			} else {
-				echo "Error al actualizar el proveedor.";
-			}
-			break;
 
 	// CASOS PARA PRODUCTOS PARA COMPRAR
 	
 	case 'pago-listado':
 
-		$objCom = new CompraModel();
-		$resultCompras = $objCom->listarCompra();
+		$objPago = new PagoModel();
+		$resultsPagos = $objPago->listarPago();
 
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/detalles de pedidos/listado.php");
+		include("../views/pagos/listado.php");
 		include("../views/template/footer.php");
 		break;
 	
 	case 'pago-nuevo':
 
-		$objPro = new TransporteModel();
-    	$resultProveedores = $objPro->listarDistribuidor();
-
-		$objEmp = new EmpleadoModel();
-		$resultEmpleados = $objEmp->listarEmpleado();
-
-		$objCli = new clienteModel();
-		$resultClientes = $objCli->listarCliente();
-
-		$objVia = new HotelModel();
-		$resultProductos = $objVia->listarProducto();
-
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/detalles de pedidos/nuevo.php");
+		include("../views/pagos/nuevo.php");
 		include("../views/template/footer.php");
-		
 		break;
-
+	
 	case 'pago-nuevo-procesar':
 
-			$cliente = $_POST['cliente'];
-			$empleado = $_POST['empleado'];
-			$viaje = $_POST['viaje'];
-			$cantidad = $_POST['cantidad'];
-			$proveedor = $_POST['proveedor'];
-		
-			$objCom = new CompraModel();
-			$resultCompras = $objCom->crearCompra($cliente, $empleado, $viaje, $cantidad, $proveedor);
-		
-			if ($resultCompras == 1) {
-				$msg = "Se ingreso una pago";
-		
-				header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
-			}
-		
-			break;
+		$monto_pagado = $_POST['monto_pagado'];
+		$fecha_pago = $_POST['fecha_pago'];
+		$metodo_pago = $_POST['metodo_pago'];
+		$id_reserva = $_POST['id_reserva'];
+
+		$objPago = new PagoModel();
+		$resultado = $objPago->crearPago($monto_pagado, $fecha_pago, $metodo_pago, $id_reserva);
+	
+		if ($resultado == 1) {
+			$msg = "El pago fue registrado exitosamente.";
+			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
+		} else {
+			echo "Error al registrar el pago.";
+		}
+		break;
 	
 	case 'pago-eliminar':
 
-		$objCom = new CompraModel();
-		$idCompra = $_GET['idCom'];
-		$resultCompras = $objCom->borrarCompra($idCompra);
+		$id_pago = $_GET['id_pago'];
 
-		if ($resultCompras == 1) {
-			$msg = "La pago se borro correctamente";
-
+		$objPago = new PagoModel();
+		$resultado = $objPago->borrarPago($id_pago);
+	
+		if ($resultado == 1) {
+			$msg = "El pago fue eliminado exitosamente.";
 			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar el pago.";
 		}
-
 		break;
-
+	
 	case 'pago-editar':
-		
-		$idCompra = $_GET['idCom'];
-		$objCom = new CompraModel();
-		$compras = $objCom->obtenerCompra($idCompra);
+
+		$id_pago = $_GET['id_pago'];
+
+		$objPago = new PagoModel();
+		$pago = $objPago->obtenerPago($id_pago);
 	
-		$objPro = new TransporteModel();
-    	$resultProveedores = $objPro->listarDistribuidor();
-
-		$objEmp = new EmpleadoModel();
-		$resultEmpleados = $objEmp->listarEmpleado();
-
-		$objCli = new clienteModel();
-		$resultClientes = $objCli->listarCliente();
-
-		$objVia = new HotelModel();
-		$resultProductos = $objVia->listarProducto();
-
-	
-		if ($compras) {
-			
-			$cliente = $compras['cliente'];
-			$empleado = $compras['empleado'];
-			$viaje = $compras['viaje'];
-			$cantidad = $compras['cantidad'];
-			$proveedor = $compras['proveedor'];
+		if ($pago) {
+			$monto_pagado = $pago['monto_pagado'];
+			$fecha_pago = $pago['fecha_pago'];
+			$metodo_pago = $pago['metodo_pago'];
+			$id_reserva = $pago['id_reserva'];
 	
 			include("../views/template/header.php");
 			include("../views/template/menu.php");
-			include("../views/detalles de pedidos/editar.php");
+			include("../views/pagos/editar.php");
 			include("../views/template/footer.php");
 		} else {
-			echo "pago no encontrado.";
+			echo "Pago no encontrado.";
 		}
 		break;
 	
 	case 'pago-editar-procesar':
-		
-		$idCom = $_POST['idCom'];
-		$cliente = $_POST['cliente'];
-		$empleado = $_POST['empleado'];
-		$viaje = $_POST['viaje'];
-		$cantidad = $_POST['cantidad'];
-		$proveedor = $_POST['proveedor'];
 
-		$objCom = new CompraModel();
-		$resultCompras = $objCom->actualizarCompra($idCom, $cliente, $empleado, $viaje, $cantidad, $proveedor);
-		
-		if ($resultCompras == 1) {
-			$msg = "La pago se actualizó correctamente.";
+		$id_pago = $_POST['id_pago'];
+		$monto_pagado = $_POST['monto_pagado'];
+		$fecha_pago = $_POST['fecha_pago'];
+		$metodo_pago = $_POST['metodo_pago'];
+		$id_reserva = $_POST['id_reserva'];
+
+		$objPago = new PagoModel();
+		$resultado = $objPago->actualizarPago($id_pago, $monto_pagado, $fecha_pago, $metodo_pago, $id_reserva);
+	
+		if ($resultado == 1) {
+			$msg = "El pago fue actualizado correctamente.";
 			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
 		} else {
-			echo "Error al actualizar pago.";
+			echo "Error al actualizar el pago.";
 		}
 		break;
+	
 
 	// PEDIDOS
 
-	case 'compra1-listado':
+	case 'reserva-listado':
 
-		$objCom = new CompraModel();
-		$resultCompras = $objCom->listarCompra();
-
+		$objRes = new ReservaModel();
+		$resultsReservas = $objRes->listarReserva();
+	
 		include("../views/template/header.php");
 		include("../views/template/menu.php");
-		include("../views/pedidos/listado.php");
+		include("../views/reservas/listado.php");
 		include("../views/template/footer.php");
 		break;
+	
+	case 'reserva-nueva':
+	
+		include("../views/template/header.php");
+		include("../views/template/menu.php");
+		include("../views/reservas/nueva.php");
+		include("../views/template/footer.php");
+		break;
+	
+	case 'reserva-nueva-procesar':
+	
+		$id_cliente = $_POST['id_cliente'];
+		$id_viaje = $_POST['id_viaje'];
+		$fecha_reserva = $_POST['fecha_reserva'];
+		$numero_personas = $_POST['numero_personas'];
+		$fecha_salida = $_POST['fecha_salida'];
+		$fecha_regreso = $_POST['fecha_regreso'];
+		$estado_reserva = $_POST['estado_reserva'];
+		$precio_total = $_POST['precio_total'];
+	
+		$objRes = new ReservaModel();
+		$resultado = $objRes->crearReserva($id_cliente, $id_viaje, $fecha_reserva, $numero_personas, $fecha_salida, $fecha_regreso, $estado_reserva, $precio_total);
+	
+		if ($resultado == 1) {
+			$msg = "La reserva fue creada exitosamente.";
+			header("Location: agenciaControll.php?opcion=reserva-listado&msg=$msg");
+		} else {
+			echo "Error al crear la reserva.";
+		}
+		break;
+	
+	case 'reserva-eliminar':
+	
+		$id_reserva = $_GET['id_reserva'];
+		$objRes = new ReservaModel();
+		$resultado = $objRes->borrarReserva($id_reserva);
+	
+		if ($resultado == 1) {
+			$msg = "La reserva fue eliminada exitosamente.";
+			header("Location: agenciaControll.php?opcion=reserva-listado&msg=$msg");
+		} else {
+			echo "Error al eliminar la reserva.";
+		}
+		break;
+	
+	case 'reserva-editar':
+
+		$id_reserva = $_GET['id_reserva'];
+		$objRes = new ReservaModel();
+		$reserva = $objRes->obtenerReserva($id_reserva);
+	
+		if ($reserva) {
+
+			$id_cliente = $reserva['id_cliente'];
+			$id_viaje = $reserva['id_viaje'];
+			$fecha_reserva = $reserva['fecha_reserva'];
+			$numero_personas = $reserva['numero_personas'];
+			$fecha_salida = $reserva['fecha_salida'];
+			$fecha_regreso = $reserva['fecha_regreso'];
+			$estado_reserva = $reserva['estado_reserva'];
+			$precio_total = $reserva['precio_total'];
+	
+			include("../views/template/header.php");
+			include("../views/template/menu.php");
+			include("../views/reservas/editar.php");
+			include("../views/template/footer.php");
+		} else {
+			echo "Reserva no encontrada.";
+		}
+		break;
+	
+	case 'reserva-editar-procesar':
+	
+		$id_reserva = $_POST['id_reserva'];
+		$id_cliente = $_POST['id_cliente'];
+		$id_viaje = $_POST['id_viaje'];
+		$fecha_reserva = $_POST['fecha_reserva'];
+		$numero_personas = $_POST['numero_personas'];
+		$fecha_salida = $_POST['fecha_salida'];
+		$fecha_regreso = $_POST['fecha_regreso'];
+		$estado_reserva = $_POST['estado_reserva'];
+		$precio_total = $_POST['precio_total'];
+	
+		$objRes = new ReservaModel();
+		$resultado = $objRes->actualizarReserva($id_reserva, $id_cliente, $id_viaje, $fecha_reserva, $numero_personas, $fecha_salida, $fecha_regreso, $estado_reserva, $precio_total);
+	
+		if ($resultado == 1) {
+			$msg = "La reserva fue actualizada correctamente.";
+			header("Location: agenciaControll.php?opcion=reserva-listado&msg=$msg");
+		} else {
+			echo "Error al actualizar la reserva.";
+		}
+		break;
+	
 }
