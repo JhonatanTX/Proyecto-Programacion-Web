@@ -5,10 +5,25 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="../style/styleAdmin.css">
         <script src="https://kit.fontawesome.com/744b78811a.js" crossorigin="anonymous"></script>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .bg{
+                background-color: #16191c;
+            }
+
+            .form-control{
+                min-height: 2.5rem;
+            }
+
+            .img-1{
+                background-image:url(../img/collage.png);
+                background-size: cover;
+                margin: 0;
+                align-items: center;
+            }
+        </style>
     </head>
 <body class="bg">
         <div class="container-fluid">

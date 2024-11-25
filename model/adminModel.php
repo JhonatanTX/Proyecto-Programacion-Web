@@ -6,7 +6,7 @@ class AdminModel{
     function __construct(){
     }
     
-    function verEmpledo($nombre,$contraseña){
+    function verEmpleado($nombre,$contraseña){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         $sentencia = "SELECT nombre FROM empleados WHERE nombre = $nombre AND contrasena =$contraseña";

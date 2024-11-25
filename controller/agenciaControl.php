@@ -25,7 +25,7 @@ switch ($opcion) {
 
 
 		$objModel = new adminModel();
-		$result = $objModel->verUsuario($nombre,$contraseña);
+		$result = $objModel->verEmpleado($nombre,$contraseña);
 
 		if($result == 1){
 			header("Location: agenciaControl.php?opcion=empleado-listado");
