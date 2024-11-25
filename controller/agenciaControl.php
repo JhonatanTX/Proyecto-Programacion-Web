@@ -57,7 +57,7 @@ switch ($opcion) {
 		if ($resultEmpleados == 1) {
 			$msg = "El registro se borro correctamente";
 
-			header("Location: agenciaControll.php?opcion=empleado-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=empleado-listado&msg=$msg");
 		}
 
 		break;
@@ -94,7 +94,7 @@ switch ($opcion) {
 	
 			if ($resultEmpleados == 1) {
 				$msg = "El empleado se actualizó correctamente.";
-				header("Location: agenciaControll.php?opcion=empleado-listado&msg=$msg");
+				header("Location: agenciaControl.php?opcion=empleado-listado&msg=$msg");
 			} else {
 				echo "Error al actualizar el empleado.";
 			}
@@ -123,7 +123,7 @@ switch ($opcion) {
 		if ($resultEmpleados == 1) {
 			$msg = "Se creo un nuevo empleado";
 
-			header("Location: agenciaControll.php?opcion=empleado-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=empleado-listado&msg=$msg");
 		}
 
 		break;
@@ -159,11 +159,11 @@ switch ($opcion) {
 		$id_proveedor = $_POST['id_proveedor'];
 
 		$objHotel = new HotelModel();
-		$resultado = $objHotel->crearHotel($nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
+		$resultHoteles = $objHotel->crearHotel($nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
 	
-		if ($resultado == 1) {
+		if ($resultHoteles == 1) {
 			$msg = "El hotel fue creado exitosamente.";
-			header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=hotel-listado&msg=$msg");
 		} else {
 			echo "Error al crear el hotel.";
 		}
@@ -174,11 +174,11 @@ switch ($opcion) {
 		$id_hotel = $_GET['id_hotel'];
 
 		$objHotel = new HotelModel();
-		$resultado = $objHotel->borrarHotel($id_hotel);
+		$resultHoteles = $objHotel->borrarHotel($id_hotel);
 	
-		if ($resultado == 1) {
+		if ($resultHoteles == 1) {
 			$msg = "El hotel fue eliminado exitosamente.";
-			header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=hotel-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar el hotel.";
 		}
@@ -223,7 +223,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El hotel fue actualizado correctamente.";
-			header("Location: agenciaControll.php?opcion=hotel-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=hotel-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el hotel.";
 		}
@@ -264,7 +264,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El cliente fue creado exitosamente.";
-			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=cliente-listado&msg=$msg");
 		} else {
 			echo "Error al crear el cliente.";
 		}
@@ -279,7 +279,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El cliente fue eliminado exitosamente.";
-			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=cliente-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar el cliente.";
 		}
@@ -322,7 +322,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El cliente fue actualizado correctamente.";
-			header("Location: agenciaControll.php?opcion=cliente-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=cliente-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el cliente.";
 		}
@@ -365,7 +365,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El viaje fue creado exitosamente.";
-			header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=viaje-listado&msg=$msg");
 		} else {
 			echo "Error al crear el viaje.";
 		}
@@ -380,7 +380,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El viaje fue eliminado exitosamente.";
-			header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=viaje-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar el viaje.";
 		}
@@ -427,7 +427,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El viaje fue actualizado correctamente.";
-			header("Location: agenciaControll.php?opcion=viaje-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=viaje-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el viaje.";
 		}
@@ -469,7 +469,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El transporte fue creado exitosamente.";
-			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=transporte-listado&msg=$msg");
 		} else {
 			echo "Error al crear el transporte.";
 		}
@@ -484,7 +484,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El transporte fue eliminado exitosamente.";
-			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=transporte-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar el transporte.";
 		}
@@ -529,7 +529,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El transporte fue actualizado correctamente.";
-			header("Location: agenciaControll.php?opcion=transporte-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=transporte-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el transporte.";
 		}
@@ -572,7 +572,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El proveedor fue creado exitosamente.";
-			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=proveedor-listado&msg=$msg");
 		} else {
 			echo "Error al crear el proveedor.";
 		}
@@ -587,7 +587,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El proveedor fue eliminado exitosamente.";
-			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=proveedor-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar el proveedor.";
 		}
@@ -634,7 +634,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El proveedor fue actualizado correctamente.";
-			header("Location: agenciaControll.php?opcion=proveedor-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=proveedor-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el proveedor.";
 		}
@@ -674,7 +674,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El pago fue registrado exitosamente.";
-			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=pago-listado&msg=$msg");
 		} else {
 			echo "Error al registrar el pago.";
 		}
@@ -689,7 +689,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El pago fue eliminado exitosamente.";
-			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=pago-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar el pago.";
 		}
@@ -730,7 +730,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "El pago fue actualizado correctamente.";
-			header("Location: agenciaControll.php?opcion=pago-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=pago-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar el pago.";
 		}
@@ -774,7 +774,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "La reserva fue creada exitosamente.";
-			header("Location: agenciaControll.php?opcion=reserva-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=reserva-listado&msg=$msg");
 		} else {
 			echo "Error al crear la reserva.";
 		}
@@ -788,7 +788,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "La reserva fue eliminada exitosamente.";
-			header("Location: agenciaControll.php?opcion=reserva-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=reserva-listado&msg=$msg");
 		} else {
 			echo "Error al eliminar la reserva.";
 		}
@@ -837,7 +837,7 @@ switch ($opcion) {
 	
 		if ($resultado == 1) {
 			$msg = "La reserva fue actualizada correctamente.";
-			header("Location: agenciaControll.php?opcion=reserva-listado&msg=$msg");
+			header("Location: agenciaControl.php?opcion=reserva-listado&msg=$msg");
 		} else {
 			echo "Error al actualizar la reserva.";
 		}

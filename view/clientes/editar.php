@@ -1,7 +1,7 @@
 <div class="container my-5">
     <h2 style="color: #D50000;">Editar Cliente</h2>
-    <form method="POST" action="TiendaControl.php?opcion=cliente-editar-procesar">
-        <input type="hidden" name="idCliente" value="<?php echo isset($idCliente) ? $idCliente : ''; ?>">
+    <form method="POST" action="agenciaControl.php?opcion=cliente-editar-procesar">
+        <input type="hidden" name="id_cliente" value="<?php echo isset($id_cliente) ? $id_cliente : ''; ?>">
         
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label" style="color: #D50000;">Nombre</label>
@@ -18,16 +18,23 @@
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label" style="color: #D50000;">DNI</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Correo Electrónico</label>
             <div class="col-sm-6">
-                <input type="number" class="form-control" name="dni" value="<?php echo isset($dni) ? $dni : ''; ?>" required>
+                <input type="email" class="form-control" name="correo" value="<?php echo isset($correo) ? $correo : ''; ?>" required>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label" style="color: #D50000;">Correo Electrónico</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Telefono</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" name="correo" value="<?php echo isset($correo) ? $correo : ''; ?>" required>
+                <input type="number" class="form-control" name="telefono" value="<?php echo isset($telefono) ? $telefono : ''; ?>" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Dirección</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="direccion" value="<?php echo isset($direccion) ? $direccion : ''; ?>" required>
             </div>
         </div>
 

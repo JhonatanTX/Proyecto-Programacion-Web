@@ -18,18 +18,25 @@
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">DNI</label>
-                <div class="col-sm-6">
-                    <input type="number" class="form-control" name="dni" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Correo Electrónico</label>
                 <div class="col-sm-6">
                     <input type="email" class="form-control" name="correo" required>
                 </div>
             </div>
+
+            <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Telefono</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" name="telefono" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Dirección</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="direccion"  required>
+            </div>
+        </div>
 
             <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-grid">

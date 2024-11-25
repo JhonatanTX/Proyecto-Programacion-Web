@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="TiendaControl.php?opcion=cliente-nuevo">Nuevo Cliente</a></p>
+            <p><a href="agenciaControl.php?opcion=cliente-nuevo">Nuevo Cliente</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -22,8 +22,9 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>DNI</th>
                         <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -33,10 +34,11 @@
                             <td><?php echo $value['id_cliente'] ?></td>
                             <td><?php echo $value['nombre'] ?></td>
                             <td><?php echo $value['apellido'] ?></td>
-                            <td><?php echo $value['dni'] ?></td>
-                            <td><?php echo $value['correo'] ?></td>
-                            <td><a href="TiendaControl.php?opcion=cliente-editar&id_cliente=<?php echo $value['id_cliente'] ?>">Editar</a> - 
-                                <a href="TiendaControl.php?opcion=cliente-eliminar&id_cliente=<?php echo $value['id_cliente'] ?>">Eliminar</a></td>
+                            <td><?php echo $value['correo_electronico'] ?></td>
+                            <td><?php echo $value['telefono'] ?></td>
+                            <td><?php echo $value['direccion'] ?></td>
+                            <td><a href="agenciaControl.php?opcion=cliente-editar&id_cliente=<?php echo $value['id_cliente'] ?>">Editar</a> - 
+                                <a href="agenciaControl.php?opcion=cliente-eliminar&id_cliente=<?php echo $value['id_cliente'] ?>">Eliminar</a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

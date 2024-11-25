@@ -1,6 +1,6 @@
 <div class="container my-5">
     <h2>Nuevo Empleado</h2>
-    <form method="POST" action="agenciaControll.php?opcion=empleado-nuevo-procesar">
+    <form method="POST" action="agenciaControl.php?opcion=empleado-nuevo-procesar">
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Nombre</label>
             <div class="col-sm-6">
@@ -25,7 +25,11 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Contraseña</label>
             <div class="col-sm-6">
+<<<<<<< Updated upstream
                 <input type="email" class="form-control" name="contraseña" required>
+=======
+                <input type="email" class="form-control" name="contrasena" required>
+>>>>>>> Stashed changes
             </div>
         </div>
 

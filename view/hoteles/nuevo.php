@@ -1,7 +1,7 @@
 <div class="container-fluid text-center" style="background-color: #ffffff; padding-top: 20px; padding-bottom: 20px;">
     <div class="container my-5" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         <h2 style="color: #d32f2f;">Nuevo Hotel</h2>
-        <form method="POST" action="TiendaControl.php?opcion=hotel-nuevo-procesar">
+        <form method="POST" action="agenciaControl.php?opcion=hotel-nuevo-procesar">
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre</label>
@@ -18,9 +18,23 @@
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Capacidad</label>
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Telefono</label>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control" name="capacidad" required>
+                    <input type="number" class="form-control" name="telefono" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #D50000;">Correo</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="correo_electronico" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #D50000;">Lugar</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="lugar" required>
                 </div>
             </div>
 

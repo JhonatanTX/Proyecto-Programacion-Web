@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="TiendaControl.php?opcion=proveedor-nuevo">Nuevo Proveedor</a></p>
+            <p><a href="agenciaControl.php?opcion=proveedor-nuevo">Nuevo Proveedor</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -21,8 +21,11 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Teléfono</th>
+                        <th>Servicio</th>
                         <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Tarifas</th>
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -30,11 +33,14 @@
                     <?php foreach ($resultProveedores as $key => $value) { ?>
                         <tr>
                             <td><?php echo $value['id_proveedor'] ?></td>
-                            <td><?php echo $value['nombre'] ?></td>
-                            <td><?php echo $value['telefono'] ?></td>
+                            <td><?php echo $value['nombre_empresa'] ?></td>
+                            <td><?php echo $value['tipo_servicio'] ?></td>
                             <td><?php echo $value['direccion'] ?></td>
-                            <td><a href="TiendaControl.php?opcion=proveedor-editar&id_proveedor=<?php echo $value['id_proveedor'] ?>">Editar</a> - 
-                                <a href="TiendaControl.php?opcion=proveedor-eliminar&id_proveedor=<?php echo $value['id_proveedor'] ?>">Eliminar</a></td>
+                            <td><?php echo $value['telefono'] ?></td>
+                            <td><?php echo $value['correo_electronico'] ?></td>
+                            <td><?php echo $value['tarifas'] ?></td>
+                            <td><a href="agenciaControl.php?opcion=proveedor-editar&id_proveedor=<?php echo $value['id_proveedor'] ?>">Editar</a> - 
+                                <a href="agenciaControl.php?opcion=proveedor-eliminar&id_proveedor=<?php echo $value['id_proveedor'] ?>">Eliminar</a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

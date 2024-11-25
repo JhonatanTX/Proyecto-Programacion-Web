@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="TiendaControl.php?opcion=hotel-nuevo">Nuevo Hotel</a></p>
+            <p><a href="agenciaControl.php?opcion=hotel-nuevo">Nuevo Hotel</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -22,7 +22,9 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Dirección</th>
-                        <th>Capacidad</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Lugar</th>
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -30,11 +32,13 @@
                     <?php foreach ($resultHoteles as $key => $value) { ?>
                         <tr>
                             <td><?php echo $value['id_hotel'] ?></td>
-                            <td><?php echo $value['nombre'] ?></td>
+                            <td><?php echo $value['nombre_hotel'] ?></td>
                             <td><?php echo $value['direccion'] ?></td>
-                            <td><?php echo $value['capacidad'] ?></td>
-                            <td><a href="TiendaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>">Editar</a> - 
-                                <a href="TiendaControl.php?opcion=hotel-eliminar&id_hotel=<?php echo $value['id_hotel'] ?>">Eliminar</a></td>
+                            <td><?php echo $value['telefono'] ?></td>
+                            <td><?php echo $value['correo'] ?></td>
+                            <td><?php echo $value['lugar'] ?></td>
+                            <td><a href="agenciaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>">Editar</a> - 
+                                <a href="agenciaControl.php?opcion=hotel-eliminar&id_hotel=<?php echo $value['id_hotel'] ?>">Eliminar</a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

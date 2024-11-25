@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="TiendaControl.php?opcion=viaje-nuevo">Nuevo Viaje</a></p>
+            <p><a href="agenciaControl.php?opcion=viaje-nuevo">Nuevo Viaje</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -33,8 +33,8 @@
                             <td><?php echo $value['destino'] ?></td>
                             <td><?php echo $value['fecha'] ?></td>
                             <td><?php echo $value['precio'] ?></td>
-                            <td><a href="TiendaControl.php?opcion=viaje-editar&id_viaje=<?php echo $value['id_viaje'] ?>">Editar</a> - 
-                                <a href="TiendaControl.php?opcion=viaje-eliminar&id_viaje=<?php echo $value['id_viaje'] ?>">Eliminar</a></td>
+                            <td><a href="agenciaControl.php?opcion=viaje-editar&id_viaje=<?php echo $value['id_viaje'] ?>">Editar</a> - 
+                                <a href="agenciaControl.php?opcion=viaje-eliminar&id_viaje=<?php echo $value['id_viaje'] ?>">Eliminar</a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

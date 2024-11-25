@@ -1,7 +1,7 @@
 <div class="container-fluid text-center" style="background-color: #ffffff; padding-top: 20px; padding-bottom: 20px;">
     <div class="container my-5" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         <h2 style="color: #d32f2f;">Nuevo Proveedor</h2>
-        <form method="POST" action="TiendaControl.php?opcion=proveedor-nuevo-procesar">
+        <form method="POST" action="agenciaControl.php?opcion=proveedor-nuevo-procesar">
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre</label>
@@ -11,9 +11,9 @@
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Teléfono</label>
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Tipo de Servicio</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="telefono" required>
+                    <input type="text" class="form-control" name="tipo_servicio" required>
                 </div>
             </div>
 
@@ -21,6 +21,27 @@
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Dirección</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="direccion" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Teléfono</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="telefono" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Correo</label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" name="correo_electronico" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Tarifas</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="telefono" required>
                 </div>
             </div>
 

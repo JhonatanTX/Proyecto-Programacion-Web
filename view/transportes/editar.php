@@ -1,6 +1,6 @@
 <div class="container my-5">
     <h2 style="color: #D50000;">Editar Transporte</h2>
-    <form method="POST" action="TiendaControl.php?opcion=transporte-editar-procesar">
+    <form method="POST" action="agenciaControl.php?opcion=transporte-editar-procesar">
         <input type="hidden" name="idTransporte" value="<?php echo isset($idTransporte) ? $idTransporte : ''; ?>">
         
         <div class="row mb-3">

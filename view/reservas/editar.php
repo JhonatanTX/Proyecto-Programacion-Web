@@ -1,7 +1,7 @@
 <div class="container my-5">
     <h2 style="color: #D50000;">Editar Reserva</h2>
-    <form method="POST" action="TiendaControl.php?opcion=reserva-editar-procesar">
-        <input type="hidden" name="idReserva" value="<?php echo isset($idReserva) ? $idReserva : ''; ?>">
+    <form method="POST" action="agenciaControl.php?opcion=reserva-editar-procesar">
+        <input type="hidden" name="id_reserva" value="<?php echo isset($id_reserva) ? $id_reserva : ''; ?>">
         
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label" style="color: #D50000;">Cliente</label>
@@ -26,9 +26,9 @@
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label" style="color: #D50000;">Fecha de Ingreso</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Fecha de Regreso</label>
             <div class="col-sm-6">
-                <input type="date" class="form-control" name="fecha_ingreso" value="<?php echo isset($fecha_ingreso) ? $fecha_ingreso : ''; ?>" required>
+                <input type="date" class="form-control" name="fecha_regreso" value="<?php echo isset($fecha_regreso) ? $fecha_ingreso : ''; ?>" required>
             </div>
         </div>
 

@@ -1,6 +1,6 @@
 <div class="container my-5">
     <h2>Editar Empleado</h2>
-    <form method="POST" action="agenciaControll.php?opcion=empleado-editar-procesar">
+    <form method="POST" action="agenciaControl.php?opcion=empleado-editar-procesar">
         <input type="hidden" name="id_empleado" value="<?php echo $id_empleado; ?>">
 
         <div class="row mb-3">
@@ -25,9 +25,9 @@
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Correo Electrónico</label>
+            <label class="col-sm-3 col-form-label">Contraseña</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" name="correo_electronico" value="<?php echo $correo_electronico; ?>" required>
+                <input type="email" class="form-control" name="contrasena" value="<?php echo $contraseña; ?>" required>
             </div>
         </div>
 

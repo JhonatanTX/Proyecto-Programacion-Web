@@ -7,7 +7,6 @@
                 <th>Nombre</th>
                 <th>Puesto</th>
                 <th>DNI</th>
-                <th>Correo Electrónico</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -19,10 +18,9 @@
                         <td><?php echo $empleado['nombre']; ?></td>
                         <td><?php echo $empleado['puesto']; ?></td>
                         <td><?php echo $empleado['dni']; ?></td>
-                        <td><?php echo $empleado['correo_electronico']; ?></td>
                         <td>
-                            <a href="agenciaControll.php?opcion=empleado-editar&id_empleado=<?php echo $empleado['id_empleado']; ?>">Editar</a> | 
-                            <a href="agenciaControll.php?opcion=empleado-eliminar&id_empleado=<?php echo $empleado['id_empleado']; ?>" onclick="return confirm('¿Seguro que quieres eliminar este empleado?')">Eliminar</a>
+                            <a href="agenciaControl.php?opcion=empleado-editar&id_empleado=<?php echo $empleado['id_empleado']; ?>">Editar</a> | 
+                            <a href="agenciaControl.php?opcion=empleado-eliminar&id_empleado=<?php echo $empleado['id_empleado']; ?>" onclick="return confirm('¿Seguro que quieres eliminar este empleado?')">Eliminar</a>
                         </td>
                     </tr>
                 <?php } ?>

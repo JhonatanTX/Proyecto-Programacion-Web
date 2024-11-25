@@ -1,7 +1,7 @@
 <div class="container my-5">
     <h2 style="color: #D50000;">Editar Pago</h2>
-    <form method="POST" action="TiendaControl.php?opcion=pago-editar-procesar">
-        <input type="hidden" name="idPago" value="<?php echo isset($idPago) ? $idPago : ''; ?>">
+    <form method="POST" action="agenciaControl.php?opcion=pago-editar-procesar">
+        <input type="hidden" name="id_pago" value="<?php echo isset($id_pago) ? $id_pago : ''; ?>">
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label" style="color: #D50000;">Monto Pagado</label>

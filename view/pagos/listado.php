@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="TiendaControl.php?opcion=pago-nuevo">Nuevo Pago</a></p>
+            <p><a href="agenciaControl.php?opcion=pago-nuevo">Nuevo Pago</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -35,8 +35,8 @@
                             <td><?php echo $value['fecha_pago'] ?></td>
                             <td><?php echo $value['metodo_pago'] ?></td>
                             <td><?php echo $value['id_reserva'] ?></td>
-                            <td><a href="TiendaControl.php?opcion=pago-editar&id_pago=<?php echo $value['id_pago'] ?>">Editar</a> - 
-                                <a href="TiendaControl.php?opcion=pago-eliminar&id_pago=<?php echo $value['id_pago'] ?>">Eliminar</a></td>
+                            <td><a href="agenciaControl.php?opcion=pago-editar&id_pago=<?php echo $value['id_pago'] ?>">Editar</a> - 
+                                <a href="agenciaControl.php?opcion=pago-eliminar&id_pago=<?php echo $value['id_pago'] ?>">Eliminar</a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

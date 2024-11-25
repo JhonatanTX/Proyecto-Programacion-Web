@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="TiendaControl.php?opcion=reserva-nueva">Nueva Reserva</a></p>
+            <p><a href="agenciaControl.php?opcion=reserva-nueva">Nueva Reserva</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -35,8 +35,8 @@
                             <td><?php echo $value['hotel'] ?></td>
                             <td><?php echo $value['fecha_ingreso'] ?></td>
                             <td><?php echo $value['fecha_salida'] ?></td>
-                            <td><a href="TiendaControl.php?opcion=reserva-editar&id_reserva=<?php echo $value['id_reserva'] ?>">Editar</a> - 
-                                <a href="TiendaControl.php?opcion=reserva-eliminar&id_reserva=<?php echo $value['id_reserva'] ?>">Eliminar</a></td>
+                            <td><a href="agenciaControl.php?opcion=reserva-editar&id_reserva=<?php echo $value['id_reserva'] ?>">Editar</a> - 
+                                <a href="agenciaControl.php?opcion=reserva-eliminar&id_reserva=<?php echo $value['id_reserva'] ?>">Eliminar</a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>
