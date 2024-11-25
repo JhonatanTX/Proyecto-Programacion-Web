@@ -1,13 +1,13 @@
 <?php
-include("../models/adminModel.php");
-include("../models/empleadoModel.php");
-include("../models/HotelModel.php");
-include("../models/viajeModel.php");
-include("../models/clienteModel.php");
-include("../models/TransporteModel.php");
-include("../models/proveedorModel.php");
-include("../models/pagoModel.php");
-include("../models/reservaModel.php");
+include("../model/adminModel.php");
+include("../model/empleadoModel.php");
+include("../model/hotelModel.php");
+include("../model/viajeModel.php");
+include("../model/clienteModel.php");
+include("../model/transporteModel.php");
+include("../model/proveedorModel.php");
+include("../model/pagoModel.php");
+include("../model/reservaModel.php");
 
 $opcion = $_GET['opcion'];
 switch ($opcion) {
@@ -15,17 +15,17 @@ switch ($opcion) {
 	// LOGIN ADMIN
 	case 'login-form-admin':
 
-		include("../views/viewLoginAdmin/loginAdmin.php");
+		include("../view/viewLoginAdmin/loginAdmin.php");
 		break;
 	case 'login-procesar': //VERIFICAR ADMINISTRADOR
 		// code...
 
 		$nombre = $_POST['nombre'];
-		$contrasena = sha1($_POST['contrasena']);
+		$contraseña = sha1($_POST['contrasena']);
 
 
 		$objModel = new adminModel();
-		$result = $objModel->verUsuario($nombre,$contrasena);
+		$result = $objModel->verUsuario($nombre,$contraseña);
 
 		if($result == 1){
 			header("Location: agenciaControl.php?opcion=empleado-listado");
@@ -42,10 +42,10 @@ switch ($opcion) {
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->listarEmpleado();
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/empleados/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/empleados/listado.php");
+		include("../view/template/footer.php");
 		break;
 
 	case 'empleado-eliminar':
@@ -72,11 +72,11 @@ switch ($opcion) {
 				$nombre = $empleado['nombre'];
 				$puesto = $empleado['puesto'];
 				$dni = $empleado['dni'];
-				$correo_electronico = ''; // Deja el campo de correo_electronico vacío
-				include("../views/template/header.php");
-				include("../views/template/menu.php");
-				include("../views/empleados/editar.php");
-				include("../views/template/footer.php");
+				$contraseña = ''; // Deja el campo de contraseña vacío
+				include("../view/template/header.php");
+				include("../view/template/menu.php");
+				include("../view/empleados/editar.php");
+				include("../view/template/footer.php");
 			} else {
 				echo "Empleado no encontrado.";
 			}
@@ -87,10 +87,10 @@ switch ($opcion) {
 			$nombre = $_POST['nombre'];
 			$puesto = $_POST['puesto'];
 			$dni = $_POST['dni'];
-			$correo_electronico = sha1($_POST['correo_electronico']);
+			$contraseña= sha1($_POST['contrasena']);
 	
 			$objEmp = new EmpleadoModel();
-			$resultEmpleados = $objEmp->actualizarEmpleado($id_empleado, $nombre, $puesto, $dni, $correo_electronico);
+			$resultEmpleados = $objEmp->actualizarEmpleado($id_empleado, $nombre, $puesto, $dni, $contraseña);
 	
 			if ($resultEmpleados == 1) {
 				$msg = "El empleado se actualizó correctamente.";
@@ -103,10 +103,10 @@ switch ($opcion) {
 
 	case 'empleado-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/empleados/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/empleados/nuevo.php");
+		include("../view/template/footer.php");
 
 		break;
 
@@ -115,10 +115,10 @@ switch ($opcion) {
 		$nombre = $_POST['nombre'];
 		$puesto = $_POST['puesto'];
 		$dni = $_POST['dni'];
-		$correo_electronico = sha1($_POST['correo_electronico']);
+		$correo_electronico = sha1($_POST['contrasena']);
 
 		$objEmp = new EmpleadoModel();
-		$resultEmpleados = $objEmp->crearEmpleado($nombre,$puesto,$dni,$correo_electronico);
+		$resultEmpleados = $objEmp->crearEmpleado($nombre,$puesto,$dni,$contraseña);
 
 		if ($resultEmpleados == 1) {
 			$msg = "Se creo un nuevo empleado";
@@ -135,18 +135,18 @@ switch ($opcion) {
 		$objHotel = new HotelModel();
 		$resultsHoteles = $objHotel->listarHotel();
 	
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/hoteles/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/hoteles/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'hotel-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/hoteles/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/hoteles/nuevo.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'hotel-nuevo-procesar':
@@ -199,10 +199,10 @@ switch ($opcion) {
 			$lugar = $hotel['lugar'];
 			$id_proveedor = $hotel['id_proveedor'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/hoteles/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/hoteles/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Hotel no encontrado.";
 		}
@@ -237,18 +237,18 @@ switch ($opcion) {
 		$objCliente = new ClienteModel();
 		$resultsClientes = $objCliente->listarCliente();
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/clientes/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/clientes/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'cliente-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/clientes/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/clientes/nuevo.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'cliente-nuevo-procesar':
@@ -299,10 +299,10 @@ switch ($opcion) {
 			$telefono = $cliente['telefono'];
 			$direccion = $cliente['direccion'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/clientes/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/clientes/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Cliente no encontrado.";
 		}
@@ -336,18 +336,18 @@ switch ($opcion) {
 		$objViaje = new ViajeModel();
 		$resultsViajes = $objViaje->listarViaje();
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/viajes/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/viajes/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'viaje-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/viajes/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/viajes/nuevo.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'viaje-nuevo-procesar':
@@ -402,10 +402,10 @@ switch ($opcion) {
 			$duracion = $viaje['duracion'];
 			$transporte = $viaje['transporte'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/viajes/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/viajes/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Viaje no encontrado.";
 		}
@@ -441,18 +441,18 @@ switch ($opcion) {
 		$objTransporte = new TransporteModel();
 		$resultsTransportes = $objTransporte->listarTransporte();
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/transportes/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/transportes/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'transporte-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/transportes/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/transportes/nuevo.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'transporte-nuevo-procesar':
@@ -505,10 +505,10 @@ switch ($opcion) {
 			$fecha_salida = $transporte['fecha_salida'];
 			$destino = $transporte['destino'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/transportes/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/transportes/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Transporte no encontrado.";
 		}
@@ -543,18 +543,18 @@ switch ($opcion) {
 		$objProveedor = new ProveedorModel();
 		$resultsProveedores = $objProveedor->listarProveedor();
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/proveedores/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/proveedores/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'proveedor-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/proveedores/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/proveedores/nuevo.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'proveedor-nuevo-procesar':
@@ -609,10 +609,10 @@ switch ($opcion) {
 			$correo_electronico = $proveedor['correo_electronico'];
 			$tarifas = $proveedor['tarifas'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/proveedores/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/proveedores/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Proveedor no encontrado.";
 		}
@@ -648,18 +648,18 @@ switch ($opcion) {
 		$objPago = new PagoModel();
 		$resultsPagos = $objPago->listarPago();
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/pagos/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/pagos/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'pago-nuevo':
 
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/pagos/nuevo.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/pagos/nuevo.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'pago-nuevo-procesar':
@@ -708,10 +708,10 @@ switch ($opcion) {
 			$metodo_pago = $pago['metodo_pago'];
 			$id_reserva = $pago['id_reserva'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/pagos/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/pagos/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Pago no encontrado.";
 		}
@@ -744,18 +744,18 @@ switch ($opcion) {
 		$objRes = new ReservaModel();
 		$resultsReservas = $objRes->listarReserva();
 	
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/reservas/listado.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/reservas/listado.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'reserva-nueva':
 	
-		include("../views/template/header.php");
-		include("../views/template/menu.php");
-		include("../views/reservas/nueva.php");
-		include("../views/template/footer.php");
+		include("../view/template/header.php");
+		include("../view/template/menu.php");
+		include("../view/reservas/nueva.php");
+		include("../view/template/footer.php");
 		break;
 	
 	case 'reserva-nueva-procesar':
@@ -811,10 +811,10 @@ switch ($opcion) {
 			$estado_reserva = $reserva['estado_reserva'];
 			$precio_total = $reserva['precio_total'];
 	
-			include("../views/template/header.php");
-			include("../views/template/menu.php");
-			include("../views/reservas/editar.php");
-			include("../views/template/footer.php");
+			include("../view/template/header.php");
+			include("../view/template/menu.php");
+			include("../view/reservas/editar.php");
+			include("../view/template/footer.php");
 		} else {
 			echo "Reserva no encontrada.";
 		}
