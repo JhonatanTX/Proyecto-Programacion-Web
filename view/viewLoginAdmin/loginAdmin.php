@@ -36,7 +36,7 @@
                 <div class="col-lg-5 text-light">
                     <br><br><br><br>
                     <div class="px-lg-5 pt-lg-4 pb-lg-3">
-                        <h1 class="text-light font-weight-bold mb-3">¡Bienvenido de vuelta!</h1>
+                        <h1 class="text-light font-weight-bold mb-3">¡Bienvenido Administrador!</h1>
                         <form method='POST' class="mb-5" enctype='multipart/form-data'>
                                 <div class = "form-group  mb-4">
                                     <label class="font-weight-bold" for="nombre">Usuario</label>
@@ -57,9 +57,9 @@
                             <button type="submit" name='btnLogin' value='Login' class="btn btn-outline-light flex-grow-1 ml-2"><i class="fa-brands fa-facebook mr-3"></i>Facebook</button>
                         </div>
                         <br>
-                        <div class="text-center">
+                        <!-- <div class="text-center">
                             <p class="d-inline-block mr-2">¿Todavia no tienes una cuenta?</p><a class="text-light text-decoration-none font-weight-bold" href="#">Crea una ahora</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 
