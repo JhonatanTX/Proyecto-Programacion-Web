@@ -21,11 +21,11 @@ switch ($opcion) {
 		// code...
 
 		$nombre = $_POST['nombre'];
-		$correo_electronico = sha1($_POST['correo_electronico']);
+		$contrasena = sha1($_POST['contrasena']);
 
 
 		$objModel = new adminModel();
-		$result = $objModel->verUsuario($nombre,$correo_electronico);
+		$result = $objModel->verUsuario($nombre,$contrasena);
 
 		if($result == 1){
 			header("Location: agenciaControl.php?opcion=empleado-listado");
