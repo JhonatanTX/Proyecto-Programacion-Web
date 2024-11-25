@@ -23,9 +23,9 @@
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Correo Electrónico</label>
+            <label class="col-sm-3 col-form-label">Contraseña</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" name="correo_electronico" required>
+                <input type="email" class="form-control" name="contraseña" required>
             </div>
         </div>
 

@@ -115,7 +115,7 @@ switch ($opcion) {
 		$nombre = $_POST['nombre'];
 		$puesto = $_POST['puesto'];
 		$dni = $_POST['dni'];
-		$correo_electronico = sha1($_POST['contrasena']);
+		$contraseña = sha1($_POST['contrasena']);
 
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->crearEmpleado($nombre,$puesto,$dni,$contraseña);

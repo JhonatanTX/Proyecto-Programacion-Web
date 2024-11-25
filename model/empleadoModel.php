@@ -14,10 +14,10 @@ class EmpleadoModel{
 	
 		if ($resultado->num_rows > 0) {
 		  // output data of each row
-		  while($row = $resultado->fetch_assoc()) {
-		    $arrayEmpleado[] = $row;
-		  }
-		  return $arrayEmpleado;
+			while($row = $resultado->fetch_assoc()) {
+				$arrayEmpleado[] = $row;
+			}
+		return $arrayEmpleado;
 		} else {
 		  //echo "0 results";
 		}
