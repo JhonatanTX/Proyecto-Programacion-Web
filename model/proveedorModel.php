@@ -76,4 +76,12 @@ class ProveedorModel{
 		}
     }
 
+    function buscarIdProveedor($nombre_empresa){
+        $objConex = new Conexion();
+		$conexion = $objConex->getConexion();
+
+        $sentencia = "SELECT id_proveedor FROM proveedores WHERE nombre_empresa = '$nombre_empresa'";
+        $resultado = $conexion->query($sentencia);
+        return $resultado;
+    }
 }

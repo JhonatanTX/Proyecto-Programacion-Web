@@ -73,4 +73,13 @@ class ClienteModel{
 			return 0;
 		}
     }
+
+    function buscarIdCliente($nombre){
+        $objConex = new Conexion();
+		$conexion = $objConex->getConexion();
+
+        $sentencia = "SELECT id_cliente FROM clientes WHERE nombre = '$nombre'";
+        $resultado = $conexion->query($sentencia);
+        return $resultado;
+    }
 }

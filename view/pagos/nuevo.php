@@ -2,7 +2,22 @@
     <div class="container my-5" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         <h2 style="color: #d32f2f;">Nuevo Pago</h2>
         <form method="POST" action="agenciaControl.php?opcion=pago-nuevo-procesar">
-
+            
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre Cliente</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="nombre" required>
+                        <option value="...">...</option>
+                        <?php if(!empty($resultClientes)) { ?>
+                            <?php foreach ($resultClientes as $key => $value){ ?>
+                                <option value="<?php echo $value['nombre']; ?>"><?php echo $value['nombre']; ?></option>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <option value="">No hay proveedores disponibles</option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Monto Pagado</label>
                 <div class="col-sm-6">
@@ -24,17 +39,6 @@
                         <option value="Efectivo">Efectivo</option>
                         <option value="Tarjeta">Tarjeta</option>
                         <option value="Transferencia">Transferencia</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Reserva</label>
-                <div class="col-sm-6">
-                    <select class="form-control" name="id_reserva" required>
-                        <?php foreach($reservas as $reserva) { ?>
-                            <option value="<?php echo $reserva['id_reserva']; ?>"><?php echo $reserva['id_reserva']; ?></option>
-                        <?php } ?>
                     </select>
                 </div>
             </div>

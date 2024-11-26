@@ -76,4 +76,12 @@ class ViajeModel{
 		}
     }
 
+    function buscarIdViaje($destinos){
+        $objConex = new Conexion();
+		$conexion = $objConex->getConexion();
+
+        $sentencia = "SELECT id_viaje FROM viajes WHERE destinos = '$destinos'";
+        $resultado = $conexion->query($sentencia);
+        return $resultado;
+    }
 }

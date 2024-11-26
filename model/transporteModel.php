@@ -9,7 +9,7 @@ class TransporteModel{
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO transportes (tipo_transporte,id_proveedor,numero_servicio,precio,fecha_salida,destino) VALUES  ($tipo_transporte,$id_proveedor,$numero_servicio,$precio,$fecha_salida,$destino)";
+        $sentencia = "INSERT INTO transportes (tipo_transporte,id_proveedor,numero_servicio,precio,fecha_salida,destino) VALUES  ('$tipo_transporte','$id_proveedor','$numero_servicio','$precio','$fecha_salida','$destino')";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -22,7 +22,7 @@ class TransporteModel{
     function listarTransporte(){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT * FROM transportes";
+        $sentencia = "SELECT t.id_transporte,t.tipo_transporte,p.nombre_empresa,t.numero_servicio,t.precio,t.fecha_salida,t.destino FROM transportes t JOIN proveedores p ON t.id_proveedor = p.id_proveedor";
         $resultado = $conexion->query($sentencia);
         
         if ($resultado->num_rows > 0){
@@ -38,7 +38,7 @@ class TransporteModel{
     function obtenerTransporte($id_transporte){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT tipo_transporte,id_proveedor,numero_servicio,precio,fecha_salida,destino FROM transportes WHERE id_transporte = $id_transporte";
+        $sentencia = "SELECT tipo_transporte,id_proveedor,numero_servicio,precio,fecha_salida,destino FROM transportes WHERE id_transporte = '$id_transporte'";
         $resultado = $conexion->query($sentencia);
 
         if($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class TransporteModel{
         }
     }
 
-    function actualizarTransporte($id_transporte,$tipo_transporte,$id_proveedor,$numero_servicio,$precio,$fecha_salida,$destino){
+    function actualizarTransporte($id_transporte,$tipo_transporte,$numero_servicio,$precio,$fecha_salida,$destino){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE transportes SET tipo_transporte = $tipo_transporte,id_proveedor = $id_proveedor,numero_servicio = $numero_servicio,precio = $precio,fecha_salida = $fecha_salida,destino = $destino WHERE id_transporte = $id_transporte";
+        $sentencia = "UPDATE transportes SET tipo_transporte = '$tipo_transporte',numero_servicio = '$numero_servicio',precio = '$precio',fecha_salida = '$fecha_salida',destino = '$destino' WHERE id_transporte = '$id_transporte'";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){

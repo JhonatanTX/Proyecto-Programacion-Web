@@ -5,7 +5,7 @@
             <p><a href="agenciaControl.php?opcion=reserva-nueva">Nueva Reserva</a></p>
         </div>
         
-        <div class="col-sm-8 text-left"> 
+        <div class="col-sm-10 text-left"> 
             <h1>LISTADO DE RESERVAS</h1>
             <h2>
                 <span style="color:red">
@@ -20,10 +20,14 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Cliente</th>
-                        <th>Hotel</th>
-                        <th>Fecha Ingreso</th>
+                        <th>Nombre Cliente</th>
+                        <th>Destino</th>
+                        <th>Fecha Reserva</th>
+                        <th>Numero de Personas</th>
                         <th>Fecha Salida</th>
+                        <th>Fecha Regreso</th>
+                        <th>Estado de Reserva</th>
+                        <th>Precio Total</th>
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -31,10 +35,14 @@
                     <?php foreach ($resultReservas as $key => $value) { ?>
                         <tr>
                             <td><?php echo $value['id_reserva'] ?></td>
-                            <td><?php echo $value['cliente'] ?></td>
-                            <td><?php echo $value['hotel'] ?></td>
-                            <td><?php echo $value['fecha_ingreso'] ?></td>
+                            <td><?php echo $value['nombre'] ?></td>
+                            <td><?php echo $value['destinos'] ?></td>
+                            <td><?php echo $value['fecha_reserva'] ?></td>
+                            <td><?php echo $value['numero_personas'] ?></td>
                             <td><?php echo $value['fecha_salida'] ?></td>
+                            <td><?php echo $value['fecha_regreso'] ?></td>
+                            <td><?php echo $value['estado_reserva'] ?></td>
+                            <td><?php echo $value['precio_total'] ?></td>
                             <td><a href="agenciaControl.php?opcion=reserva-editar&id_reserva=<?php echo $value['id_reserva'] ?>">Editar</a> - 
                                 <a href="agenciaControl.php?opcion=reserva-eliminar&id_reserva=<?php echo $value['id_reserva'] ?>">Eliminar</a></td>
                         </tr>

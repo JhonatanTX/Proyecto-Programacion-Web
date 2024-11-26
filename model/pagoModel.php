@@ -9,7 +9,7 @@ class PagoModel{
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO pagos (monto_pagado,fecha_pago,metodo_pago,id_reserva) VALUES  ($monto_pagado,$fecha_pago,$metodo_pago,$id_reserva)";
+        $sentencia = "INSERT INTO pagos (monto_pagado,fecha_pago,metodo_pago,id_reserva) VALUES  ('$monto_pagado','$fecha_pago','$metodo_pago','$id_reserva')";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -22,7 +22,7 @@ class PagoModel{
     function listarPago(){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT * FROM pagos";
+        $sentencia = "SELECT p.id_pago,p.id_reserva,p.monto_pagado,p.fecha_pago,p.metodo_pago FROM pagos p ";
         $resultado = $conexion->query($sentencia);
         
         if ($resultado->num_rows > 0){
@@ -48,10 +48,10 @@ class PagoModel{
         }
     }
 
-    function actualizarPago($id_pago,$monto_pagado,$fecha_pago,$metodo_pago,$id_reserva){
+    function actualizarPago($id_pago,$monto_pagado,$fecha_pago,$metodo_pago){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE pagos SET monto_pagado = $monto_pagado,fecha_pago = $fecha_pago,metodo_pago = $metodo_pago,id_reserva = $id_reserva WHERE id_pago = $id_pago";
+        $sentencia = "UPDATE pagos SET monto_pagado = '$monto_pagado',fecha_pago = '$fecha_pago',metodo_pago = '$metodo_pago' WHERE id_pago = '$id_pago'";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){
@@ -66,7 +66,7 @@ class PagoModel{
         $objConex = new Conexion();
 		$conexion = $objConex->getConexion();
 		
-		$sentencia = "DELETE FROM pagos WHERE id_pago = $id_pago ";
+		$sentencia = "DELETE FROM pagos WHERE id_pago = '$id_pago' ";
 		$resultado = $conexion->query($sentencia);
 
 		if($resultado){

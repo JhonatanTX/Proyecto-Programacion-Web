@@ -20,7 +20,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
+                        <th>Nombre Empresa</th>
+                        <th>Nombre Hotel</th>
                         <th>Dirección</th>
                         <th>Telefono</th>
                         <th>Correo</th>
@@ -32,10 +33,11 @@
                     <?php foreach ($resultHoteles as $key => $value) { ?>
                         <tr>
                             <td><?php echo $value['id_hotel'] ?></td>
+                            <td><?php echo $value['nombre_empresa'] ?></td>
                             <td><?php echo $value['nombre_hotel'] ?></td>
                             <td><?php echo $value['direccion'] ?></td>
                             <td><?php echo $value['telefono'] ?></td>
-                            <td><?php echo $value['correo'] ?></td>
+                            <td><?php echo $value['correo_electronico'] ?></td>
                             <td><?php echo $value['lugar'] ?></td>
                             <td><a href="agenciaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>">Editar</a> - 
                                 <a href="agenciaControl.php?opcion=hotel-eliminar&id_hotel=<?php echo $value['id_hotel'] ?>">Eliminar</a></td>

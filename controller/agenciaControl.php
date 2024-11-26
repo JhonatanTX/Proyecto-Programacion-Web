@@ -133,7 +133,7 @@ switch ($opcion) {
 	case 'hotel-listado':
 
 		$objHotel = new HotelModel();
-		$resultsHoteles = $objHotel->listarHotel();
+		$resultHoteles = $objHotel->listarHotel();
 	
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -159,8 +159,11 @@ switch ($opcion) {
 		$telefono = $_POST['telefono'];
 		$correo_electronico = $_POST['correo_electronico'];
 		$lugar = $_POST['lugar'];
-		$id_proveedor = $_POST['id_proveedor'];
-		$nombre_proveedor = $_POST['nombre_proveedor'];
+		$nombre_empresa = $_POST['nombre_empresa'];
+
+		$objProveedor = new ProveedorModel();
+		$resultProveedores = $objProveedor->buscarIdProveedor($nombre_empresa)->fetch_assoc();
+		$id_proveedor = $resultProveedores['id_proveedor'];
 
 		$objHotel = new HotelModel();
 		$resultHoteles = $objHotel->crearHotel($nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
@@ -220,10 +223,10 @@ switch ($opcion) {
 		$telefono = $_POST['telefono'];
 		$correo_electronico = $_POST['correo_electronico'];
 		$lugar = $_POST['lugar'];
-		$id_proveedor = $_POST['id_proveedor'];
+		
 
 		$objHotel = new HotelModel();
-		$resultado = $objHotel->actualizarHotel($id_hotel, $nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
+		$resultado = $objHotel->actualizarHotel($id_hotel, $nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar);
 	
 		if ($resultado == 1) {
 			$msg = "El hotel fue actualizado correctamente.";
@@ -443,7 +446,7 @@ switch ($opcion) {
 	case 'transporte-listado':
 
 		$objTransporte = new TransporteModel();
-		$resultsTransportes = $objTransporte->listarTransporte();
+		$resultTransportes = $objTransporte->listarTransporte();
 
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -453,6 +456,12 @@ switch ($opcion) {
 	
 	case 'transporte-nuevo':
 
+		$objViaje = new ViajeModel();
+		$resultViajes = $objViaje->listarViaje();
+
+		$objProveedor = new ProveedorModel();
+		$resultProveedores = $objProveedor->listarProveedor();
+
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
 		include("../view/transportes/nuevo.php");
@@ -461,12 +470,17 @@ switch ($opcion) {
 	
 	case 'transporte-nuevo-procesar':
 
+
 		$tipo_transporte = $_POST['tipo_transporte'];
-		$id_proveedor = $_POST['id_proveedor'];
+		$nombre_empresa = $_POST['nombre_empresa'];
 		$numero_servicio = $_POST['numero_servicio'];
 		$precio = $_POST['precio'];
 		$fecha_salida = $_POST['fecha_salida'];
 		$destino = $_POST['destino'];
+		
+		$objProveedor = new ProveedorModel();
+		$resultProveedor = $objProveedor->buscarIdProveedor($nombre_empresa)->fetch_assoc();
+		$id_proveedor = $resultProveedor['id_proveedor'];
 
 		$objTransporte = new TransporteModel();
 		$resultado = $objTransporte->crearTransporte($tipo_transporte, $id_proveedor, $numero_servicio, $precio, $fecha_salida, $destino);
@@ -496,6 +510,9 @@ switch ($opcion) {
 	
 	case 'transporte-editar':
 
+		$objViaje = new ViajeModel();
+		$resultViajes = $objViaje->listarViaje();
+
 		$id_transporte = $_GET['id_transporte'];
 
 		$objTransporte = new TransporteModel();
@@ -503,7 +520,6 @@ switch ($opcion) {
 	
 		if ($transporte) {
 			$tipo_transporte = $transporte['tipo_transporte'];
-			$id_proveedor = $transporte['id_proveedor'];
 			$numero_servicio = $transporte['numero_servicio'];
 			$precio = $transporte['precio'];
 			$fecha_salida = $transporte['fecha_salida'];
@@ -522,14 +538,13 @@ switch ($opcion) {
 
 		$id_transporte = $_POST['id_transporte'];
 		$tipo_transporte = $_POST['tipo_transporte'];
-		$id_proveedor = $_POST['id_proveedor'];
 		$numero_servicio = $_POST['numero_servicio'];
 		$precio = $_POST['precio'];
 		$fecha_salida = $_POST['fecha_salida'];
 		$destino = $_POST['destino'];
 
 		$objTransporte = new TransporteModel();
-		$resultado = $objTransporte->actualizarTransporte($id_transporte, $tipo_transporte, $id_proveedor, $numero_servicio, $precio, $fecha_salida, $destino);
+		$resultado = $objTransporte->actualizarTransporte($id_transporte, $tipo_transporte,$numero_servicio, $precio, $fecha_salida, $destino);
 	
 		if ($resultado == 1) {
 			$msg = "El transporte fue actualizado correctamente.";
@@ -650,7 +665,7 @@ switch ($opcion) {
 	case 'pago-listado':
 
 		$objPago = new PagoModel();
-		$resultsPagos = $objPago->listarPago();
+		$resultPagos = $objPago->listarPago();
 
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -659,6 +674,9 @@ switch ($opcion) {
 		break;
 	
 	case 'pago-nuevo':
+
+		$objCliente = new ClienteModel();
+		$resultClientes = $objCliente->listarCliente();
 
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -672,6 +690,11 @@ switch ($opcion) {
 		$fecha_pago = $_POST['fecha_pago'];
 		$metodo_pago = $_POST['metodo_pago'];
 		$id_reserva = $_POST['id_reserva'];
+		$nombre = $_POST['nombre'];
+
+		$objReserva = new ReservaModel();
+		$resultReserva = $objReserva->buscarIdReserva($nombre)->fetch_assoc();
+		$id_reserva = $resultReserva['id_reserva'];
 
 		$objPago = new PagoModel();
 		$resultado = $objPago->crearPago($monto_pagado, $fecha_pago, $metodo_pago, $id_reserva);
@@ -727,10 +750,9 @@ switch ($opcion) {
 		$monto_pagado = $_POST['monto_pagado'];
 		$fecha_pago = $_POST['fecha_pago'];
 		$metodo_pago = $_POST['metodo_pago'];
-		$id_reserva = $_POST['id_reserva'];
 
 		$objPago = new PagoModel();
-		$resultado = $objPago->actualizarPago($id_pago, $monto_pagado, $fecha_pago, $metodo_pago, $id_reserva);
+		$resultado = $objPago->actualizarPago($id_pago, $monto_pagado, $fecha_pago, $metodo_pago);
 	
 		if ($resultado == 1) {
 			$msg = "El pago fue actualizado correctamente.";
@@ -746,7 +768,7 @@ switch ($opcion) {
 	case 'reserva-listado':
 
 		$objRes = new ReservaModel();
-		$resultsReservas = $objRes->listarReserva();
+		$resultReservas = $objRes->listarReserva();
 	
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -755,6 +777,12 @@ switch ($opcion) {
 		break;
 	
 	case 'reserva-nueva':
+
+		$objCliente = new ClienteModel();
+		$resultClientes = $objCliente->listarCliente();
+
+		$objViaje = new ViajeModel();
+		$resultViajes = $objViaje->listarViaje();
 	
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -764,15 +792,23 @@ switch ($opcion) {
 	
 	case 'reserva-nueva-procesar':
 	
-		$id_cliente = $_POST['id_cliente'];
-		$id_viaje = $_POST['id_viaje'];
 		$fecha_reserva = $_POST['fecha_reserva'];
 		$numero_personas = $_POST['numero_personas'];
 		$fecha_salida = $_POST['fecha_salida'];
 		$fecha_regreso = $_POST['fecha_regreso'];
 		$estado_reserva = $_POST['estado_reserva'];
 		$precio_total = $_POST['precio_total'];
-	
+		$nombre = $_POST['nombre'];
+		$destinos = $_POST['destinos'];
+
+		$objCliente = new ClienteModel();
+		$resultCliente = $objCliente->buscarIdCliente($nombre)->fetch_assoc();
+		$id_cliente = $resultCliente['id_cliente'];
+		
+		$objViaje = new ViajeModel();
+		$resultViaje = $objViaje->buscarIdViaje($destinos)->fetch_assoc();
+		$id_viaje = $resultViaje['id_viaje'];
+
 		$objRes = new ReservaModel();
 		$resultado = $objRes->crearReserva($id_cliente, $id_viaje, $fecha_reserva, $numero_personas, $fecha_salida, $fecha_regreso, $estado_reserva, $precio_total);
 	
@@ -837,7 +873,7 @@ switch ($opcion) {
 		$precio_total = $_POST['precio_total'];
 	
 		$objRes = new ReservaModel();
-		$resultado = $objRes->actualizarReserva($id_reserva, $id_cliente, $id_viaje, $fecha_reserva, $numero_personas, $fecha_salida, $fecha_regreso, $estado_reserva, $precio_total);
+		$resultado = $objRes->actualizarReserva($id_reserva, $fecha_reserva, $numero_personas, $fecha_salida, $fecha_regreso, $estado_reserva, $precio_total);
 	
 		if ($resultado == 1) {
 			$msg = "La reserva fue actualizada correctamente.";

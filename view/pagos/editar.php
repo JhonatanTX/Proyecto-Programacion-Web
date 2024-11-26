@@ -29,17 +29,6 @@
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label" style="color: #D50000;">Reserva</label>
-            <div class="col-sm-6">
-                <select class="form-control" name="id_reserva" required>
-                    <?php foreach($reservas as $reserva) { ?>
-                        <option value="<?php echo $reserva['id_reserva']; ?>" <?php echo isset($id_reserva) && $id_reserva == $reserva['id_reserva'] ? 'selected' : ''; ?>><?php echo $reserva['id_reserva']; ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-        </div>
-
-        <div class="row mb-3">
             <div class="offset-sm-3 col-sm-3 d-grid">
                 <button type="submit" class="btn btn-primary" style="background-color: #D50000; border-color: #D50000;">Guardar</button>
             </div>

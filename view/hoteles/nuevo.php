@@ -13,7 +13,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre del Proveedor</label>
                 <div class="col-sm-6">
-                    <select class="form-control" name="nombre_proveedor" required>
+                    <select class="form-control" name="nombre_empresa" required>
                         <option value="...">...</option>
                         <?php if(!empty($resultProveedores)) { ?>
                             <?php foreach ($resultProveedores as $key => $value){ ?>
@@ -26,13 +26,6 @@
                 </div>
             </div>
             
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Dirección</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="direccion" required>
-                </div>
-            </div>
-
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Dirección</label>
                 <div class="col-sm-6">

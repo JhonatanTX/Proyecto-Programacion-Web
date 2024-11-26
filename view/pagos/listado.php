@@ -20,10 +20,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Id_Reserva</th>
                         <th>Monto Pagado</th>
                         <th>Fecha de Pago</th>
                         <th>Método de Pago</th>
-                        <th>Reserva</th>
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -31,10 +31,10 @@
                     <?php foreach ($resultPagos as $key => $value) { ?>
                         <tr>
                             <td><?php echo $value['id_pago'] ?></td>
+                            <td><?php echo $value['id_reserva'] ?></td>
                             <td><?php echo $value['monto_pagado'] ?></td>
                             <td><?php echo $value['fecha_pago'] ?></td>
                             <td><?php echo $value['metodo_pago'] ?></td>
-                            <td><?php echo $value['id_reserva'] ?></td>
                             <td><a href="agenciaControl.php?opcion=pago-editar&id_pago=<?php echo $value['id_pago'] ?>">Editar</a> - 
                                 <a href="agenciaControl.php?opcion=pago-eliminar&id_pago=<?php echo $value['id_pago'] ?>">Eliminar</a></td>
                         </tr>
