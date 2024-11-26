@@ -87,21 +87,21 @@
             <!-- Carousel Items -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../img/machupicchu.jpg" class="d-block w-100" alt="Imagen 1">
+                    <img src="img/machupicchu.jpg" class="d-block w-100" alt="Imagen 1">
                     <div class="carousel-caption d-none d-md-block">
                         <h1>Descubre el Mundo</h1>
                         <p>Tu próxima aventura comienza aquí</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../img/manu.png" class="d-block w-100" alt="Imagen 2">
+                    <img src="img/manu.png" class="d-block w-100" alt="Imagen 2">
                     <div class="carousel-caption d-none d-md-block">
                         <h1>Viajes Inolvidables</h1>
                         <p>Explora nuevos destinos con nosotros</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../img/chavinDeHuantar.jpeg" class="d-block w-100" alt="Imagen 3">
+                    <img src="img/chavinDeHuantar.jpeg" class="d-block w-100" alt="Imagen 3">
                     <div class="carousel-caption d-none d-md-block">
                         <h1>Aventuras Épicas</h1>
                         <p>Crea recuerdos únicos para toda la vida</p>

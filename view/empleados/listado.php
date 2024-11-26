@@ -1,15 +1,23 @@
 <div class="container-fluid text-center">    
     <div class="row content">
         <!-- Columna Izquierda -->
-        <div class="col-sm-2 ">
-            <br><br><br><br>
+        <div class="col-sm-2 sidenav">
             <p><a href="agenciaControl.php?opcion=empleado-nuevo">Nuevo empleado</a></p>
 
         </div>
 
-        <div class="col-sm-10">
-            <h2>Listado de Empleados</h2>
-            <table class="table table-bordered">
+        <div class="col-sm-10 text-left">
+            <h1>Listado de Empleados</h1>
+            <h2>
+                <span style="color:red">
+                    <?php 
+                    if(!empty($_GET['msg'])) { 
+                        echo $_GET['msg']; 
+                    } 
+                    ?>
+                </span>
+            </h2>    
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>

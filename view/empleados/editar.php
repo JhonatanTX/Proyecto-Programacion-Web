@@ -1,31 +1,31 @@
 <div class="container my-5">
-    <h2>Editar Empleado</h2>
+    <h2 style="color: #D50000;">Editar Empleado</h2>
     <form method="POST" action="agenciaControl.php?opcion=empleado-editar-procesar">
         <input type="hidden" name="id_empleado" value="<?php echo $id_empleado; ?>">
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Nombre</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Nombre</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="nombre" value="<?php echo $nombre; ?>" required>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Puesto</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Puesto</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="puesto" value="<?php echo $puesto; ?>" required>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">DNI</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">DNI</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="dni" value="<?php echo $dni; ?>" required>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Contraseña</label>
+            <label class="col-sm-3 col-form-label" style="color: #D50000;">Contraseña</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" name="contraseña" value="<?php echo $contraseña; ?>" required>
             </div>
@@ -33,7 +33,7 @@
 
         <div class="row mb-3">
             <div class="offset-sm-3 col-sm-3 d-grid">
-                <button type="submit" class="btn btn-primary">Actualizar</button>
+                <button type="submit" class="btn btn-primary" style="background-color: #D50000; border-color: #D50000;">Actualizar</button>
             </div>
         </div>
     </form>
