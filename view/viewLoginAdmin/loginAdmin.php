@@ -37,15 +37,15 @@
                     <br><br><br><br>
                     <div class="px-lg-5 pt-lg-4 pb-lg-3">
                         <h1 class="text-light font-weight-bold mb-3">¡Bienvenido Administrador!</h1>
-                        <form method='POST' class="mb-5" enctype='multipart/form-data'>
+                        <form method='POST' class="mb-5" enctype='multipart/form-data' action="agenciaControl.php?opcion=login-procesar">
                                 <div class = "form-group  mb-4">
                                     <label class="font-weight-bold" for="nombre">Usuario</label>
                                     <input type="text" class="form-control bg-dark border-0" id="nombre" name='nombre' placeholder="Ingresa tu usuario">
                                 </div>
 
                                 <div class="form-group mb-4">
-                                    <label class="font-weight-bold" for="passwordd">Contraseña</label>
-                                    <input type="password" class="form-control bg-dark border-0 mb-2" id="passwordd" name = 'passwordd' placeholder="Ingresa tu contraseña">
+                                    <label class="font-weight-bold" for="contrasena">Contraseña</label>
+                                    <input type="password" class="form-control bg-dark border-0 mb-2" id="contrasena" name = 'contrasena' placeholder="Ingresa tu contraseña">
                                     <a href="#" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu contraseña?</a>
                                 </div>
 

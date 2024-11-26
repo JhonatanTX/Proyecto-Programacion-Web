@@ -25,14 +25,12 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Contraseña</label>
             <div class="col-sm-6">
-<<<<<<< Updated upstream
-                <input type="email" class="form-control" name="contraseña" required>
-=======
-                <input type="email" class="form-control" name="contrasena" required>
->>>>>>> Stashed changes
+
+                <input type="password" class="form-control" name="contraseña" required>
+
             </div>
         </div>
-
+        <br><br><br>
         <div class="row mb-3">
             <div class="offset-sm-3 col-sm-3 d-grid">
                 <button type="submit" class="btn btn-primary">Guardar</button>

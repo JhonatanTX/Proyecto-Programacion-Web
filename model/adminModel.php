@@ -9,7 +9,7 @@ class AdminModel{
     function verEmpleado($nombre,$contraseña){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "SELECT nombre FROM empleados WHERE nombre = $nombre AND contrasena =$contraseña";
+        $sentencia = "SELECT nombre FROM empleados WHERE nombre = '$nombre' AND contrasena ='$contraseña'";
         $resultado = $conexion->query($sentencia);
 
         if ($resultado->num_rows > 0){

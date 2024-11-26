@@ -42,7 +42,7 @@ class EmpleadoModel{
         $objconex = new Conexion();
         $conexion = $objconex->getconexion();
         
-        $sentencia = "UPDATE empleados SET nombre = '$nombre', puesto ='$puesto', dni = '$dni', contrasena = '$contraseña' WHERE id = $id_empleado";
+        $sentencia = "UPDATE empleados SET nombre = '$nombre', puesto ='$puesto', dni = '$dni', contrasena = '$contraseña' WHERE id_empleado = $id_empleado";
         $resultado = $conexion->query($sentencia);
 
         if($resultado) {

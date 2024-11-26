@@ -6,7 +6,30 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nombre" required>
+                    <input type="text" class="form-control" name="nombre_hotel" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre del Proveedor</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="nombre_proveedor" required>
+                        <option value="...">...</option>
+                        <?php if(!empty($resultProveedores)) { ?>
+                            <?php foreach ($resultProveedores as $key => $value){ ?>
+                                <option value="<?php echo $value['nombre_empresa']; ?>"><?php echo $value['nombre_empresa']; ?></option>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <option value="">No hay proveedores disponibles</option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Dirección</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="direccion" required>
                 </div>
             </div>
 
@@ -27,14 +50,14 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #D50000;">Correo</label>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control" name="correo_electronico" required>
+                    <input type="email" class="form-control" name="correo_electronico" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #D50000;">Lugar</label>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control" name="lugar" required>
+                    <input type="text" class="form-control" name="lugar" required>
                 </div>
             </div>
 
@@ -43,6 +66,9 @@
                     <button type="submit" class="btn btn-primary" style="background-color: #d32f2f; border-color: #d32f2f;">Submit</button>
                 </div>
             </div>
+
+            
         </form>
     </div>    
 </div>
+

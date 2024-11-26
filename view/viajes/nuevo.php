@@ -2,25 +2,53 @@
     <div class="container my-5" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         <h2 style="color: #d32f2f;">Nuevo Viaje</h2>
         <form method="POST" action="agenciaControl.php?opcion=viaje-nuevo-procesar">
+            
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre paquete</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombre_paquete" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Descripcion</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="descripcion" required>
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Destino</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="destino" required>
+                    <input type="text" class="form-control" name="destinos" required>
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Fecha</label>
-                <div class="col-sm-6">
-                    <input type="date" class="form-control" name="fecha" required>
-                </div>
-            </div>
-
+            
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Precio</label>
                 <div class="col-sm-6">
                     <input type="number" class="form-control" name="precio" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Fecha Disponible</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" name="fechas_disponibles" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Duracion</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="duracion" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Transporte</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="transporte" required>
                 </div>
             </div>
 

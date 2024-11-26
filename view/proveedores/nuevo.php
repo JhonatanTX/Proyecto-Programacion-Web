@@ -6,7 +6,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nombre" required>
+                    <input type="text" class="form-control" name="nombre_empresa" required>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Tarifas</label>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control" name="telefono" required>
+                    <input type="number" class="form-control" name="tarifas" required>
                 </div>
             </div>
 

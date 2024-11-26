@@ -16,8 +16,6 @@ class ClienteModel{
                 $arrayCliente[] = $row;
             }
             return $arrayCliente;
-        }else{
-            echo "0 results"; 
         }
     }
 
@@ -37,7 +35,7 @@ class ClienteModel{
     function actualizarCliente($id_cliente,$nombre,$apellido,$correo_electronico,$telefono,$direccion){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE clientes SET nombre = $nombre,apellido = $apellido,correo_electronico = $correo_electronico,telefono = $telefono ,direccion = $direccion WHERE id_cliente = $id_cliente";
+        $sentencia = "UPDATE clientes SET nombre = '$nombre',apellido = '$apellido',correo_electronico = '$correo_electronico',telefono = '$telefono' ,direccion = '$direccion' WHERE id_cliente = '$id_cliente'";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){

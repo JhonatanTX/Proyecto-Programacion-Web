@@ -6,7 +6,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Tipo</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="tipo" required>
+                    <input type="text" class="form-control" name="tipo_transporte" required>
                 </div>
             </div>
 

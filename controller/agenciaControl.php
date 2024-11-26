@@ -24,7 +24,7 @@ switch ($opcion) {
 		$contraseña = sha1($_POST['contrasena']);
 
 
-		$objModel = new adminModel();
+		$objModel = new AdminModel();
 		$result = $objModel->verEmpleado($nombre,$contraseña);
 
 		if($result == 1){
@@ -87,7 +87,7 @@ switch ($opcion) {
 			$nombre = $_POST['nombre'];
 			$puesto = $_POST['puesto'];
 			$dni = $_POST['dni'];
-			$contraseña= sha1($_POST['contrasena']);
+			$contraseña= sha1($_POST['contraseña']);
 	
 			$objEmp = new EmpleadoModel();
 			$resultEmpleados = $objEmp->actualizarEmpleado($id_empleado, $nombre, $puesto, $dni, $contraseña);
@@ -115,7 +115,7 @@ switch ($opcion) {
 		$nombre = $_POST['nombre'];
 		$puesto = $_POST['puesto'];
 		$dni = $_POST['dni'];
-		$contraseña = sha1($_POST['contrasena']);
+		$contraseña = sha1($_POST['contraseña']);
 
 		$objEmp = new EmpleadoModel();
 		$resultEmpleados = $objEmp->crearEmpleado($nombre,$puesto,$dni,$contraseña);
@@ -143,6 +143,9 @@ switch ($opcion) {
 	
 	case 'hotel-nuevo':
 
+		$objProveedor = new ProveedorModel();
+		$resultProveedores = $objProveedor->listarProveedor();
+
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
 		include("../view/hoteles/nuevo.php");
@@ -157,6 +160,7 @@ switch ($opcion) {
 		$correo_electronico = $_POST['correo_electronico'];
 		$lugar = $_POST['lugar'];
 		$id_proveedor = $_POST['id_proveedor'];
+		$nombre_proveedor = $_POST['nombre_proveedor'];
 
 		$objHotel = new HotelModel();
 		$resultHoteles = $objHotel->crearHotel($nombre_hotel, $direccion, $telefono, $correo_electronico, $lugar, $id_proveedor);
@@ -235,7 +239,7 @@ switch ($opcion) {
 	case 'cliente-listado':
 
 		$objCliente = new ClienteModel();
-		$resultsClientes = $objCliente->listarCliente();
+		$resultClientes = $objCliente->listarCliente();
 
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -334,7 +338,7 @@ switch ($opcion) {
 	case 'viaje-listado':
 
 		$objViaje = new ViajeModel();
-		$resultsViajes = $objViaje->listarViaje();
+		$resultViajes = $objViaje->listarViaje();
 
 		include("../view/template/header.php");
 		include("../view/template/menu.php");
@@ -541,7 +545,7 @@ switch ($opcion) {
 	case 'proveedor-listado':
 
 		$objProveedor = new ProveedorModel();
-		$resultsProveedores = $objProveedor->listarProveedor();
+		$resultProveedores = $objProveedor->listarProveedor();
 
 		include("../view/template/header.php");
 		include("../view/template/menu.php");

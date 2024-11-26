@@ -9,7 +9,7 @@ class ProveedorModel{
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO proveedores (nombre_empresa,tipo_servicio,contacto,direccion,telefono,correo_electronico,tarifas) VALUES  ($nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas)";
+        $sentencia = "INSERT INTO proveedores (nombre_empresa,tipo_servicio,contacto,direccion,telefono,correo_electronico,tarifas) VALUES  ('$nombre_empresa','$tipo_servicio','$contacto','$direccion','$telefono','$correo_electronico','$tarifas')";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -51,7 +51,7 @@ class ProveedorModel{
     function actualizarProveedor($id_proveedor,$nombre_empresa,$tipo_servicio,$contacto,$direccion,$telefono,$correo_electronico,$tarifas){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE proveedores SET nombre_empresa = $nombre_empresa,tipo_servicio = $tipo_servicio,contacto = $contacto,direccion = $direccion,telefono = $telefono,correo_electronico = $correo_electronico,tarifas = $tarifas WHERE id_proveedor = $id_proveedor";
+        $sentencia = "UPDATE proveedores SET nombre_empresa = '$nombre_empresa',tipo_servicio = '$tipo_servicio',contacto = '$contacto',direccion = '$direccion',telefono = '$telefono',correo_electronico = '$correo_electronico',tarifas = '$tarifas' WHERE id_proveedor = '$id_proveedor'";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){

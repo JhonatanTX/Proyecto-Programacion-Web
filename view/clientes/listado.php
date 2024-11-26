@@ -5,7 +5,7 @@
             <p><a href="agenciaControl.php?opcion=cliente-nuevo">Nuevo Cliente</a></p>
         </div>
         
-        <div class="col-sm-8 text-left"> 
+        <div class="col-sm-10 text-left"> 
             <h1>LISTADO DE CLIENTES</h1>
             <h2>
                 <span style="color:red">

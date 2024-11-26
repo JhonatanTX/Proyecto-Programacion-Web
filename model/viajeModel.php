@@ -9,7 +9,7 @@ class ViajeModel{
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
         
-        $sentencia = "INSERT INTO viajes (nombre_paquete,descripcion,destinos,precio,fechas_disponibles,duracion,transporte) VALUES  ($nombre_paquete,$descripcion,$destinos,$precio,$fechas_disponibles,$duracion,$transporte)";
+        $sentencia = "INSERT INTO viajes (nombre_paquete,descripcion,destinos,precio,fechas_disponibles,duracion,transporte) VALUES  ('$nombre_paquete','$descripcion','$destinos','$precio','$fechas_disponibles','$duracion','$transporte')";
         $resultado = $conexion->query($sentencia);
     
         if($resultado){
@@ -51,7 +51,7 @@ class ViajeModel{
     function actualizarViaje($id_viaje,$nombre_paquete,$descripcion,$destinos,$precio,$fechas_disponibles,$duracion,$transporte){
         $objConex = new Conexion();
         $conexion = $objConex->getConexion();
-        $sentencia = "UPDATE viajes SET nombre_paquete = $nombre_paquete,descripcion = $descripcion,destinos = $destinos,precio = $precio,fechas_disponibles = $fechas_disponibles,duracion = $duracion,transporte = $transporte WHERE id_viaje = $id_viaje";
+        $sentencia = "UPDATE viajes SET nombre_paquete = '$nombre_paquete',descripcion = '$descripcion',destinos = '$destinos',precio = '$precio',fechas_disponibles = '$fechas_disponibles',duracion = '$duracion',transporte = '$transporte' WHERE id_viaje = '$id_viaje'";
         $resultado = $conexion->query($sentencia);
 
         if($resultado){

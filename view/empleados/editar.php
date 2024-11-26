@@ -27,7 +27,7 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Contraseña</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" name="contrasena" value="<?php echo $contraseña; ?>" required>
+                <input type="password" class="form-control" name="contraseña" value="<?php echo $contraseña; ?>" required>
             </div>
         </div>
 
