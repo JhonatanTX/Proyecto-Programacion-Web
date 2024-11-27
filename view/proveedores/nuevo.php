@@ -47,7 +47,7 @@
 
             <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-grid">
-                    <button type="submit" class="btn btn-primary" style="background-color: #d32f2f; border-color: #d32f2f;">Submit</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #d32f2f; border-color: #d32f2f;"><i class="fas fa-save"></i> Guardar</button>
                 </div>
             </div>
         </form>

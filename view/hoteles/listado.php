@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="agenciaControl.php?opcion=hotel-nuevo">Nuevo Hotel</a></p>
+            <p><a href="agenciaControl.php?opcion=hotel-nuevo"><i class="fas fa-user-plus"></i>Nuevo Hotel</a></p>
         </div>
         
         <div class="col-sm-8 text-left"> 
@@ -39,12 +39,18 @@
                             <td><?php echo $value['telefono'] ?></td>
                             <td><?php echo $value['correo_electronico'] ?></td>
                             <td><?php echo $value['lugar'] ?></td>
-                            <td><a href="agenciaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>">Editar</a> - 
-                                <a href="agenciaControl.php?opcion=hotel-eliminar&id_hotel=<?php echo $value['id_hotel'] ?>">Eliminar</a></td>
+                            <td><a href="agenciaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>">E<i class="fas fa-edit"></i></a> - 
+                                <a href="agenciaControl.php?opcion=hotel-eliminar&id_hotel=<?php echo $value['id_hotel'] ?>"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>
             </table>
+        </div>
+        <div class="col-sm-2 sidenav">
+        <br><br><br>
+            <div class="well d-flex justify-content-center align-items-center" style="height: 200px;">
+                <img src="https://edit.org/img/blog/2019050712-agencia-de-viaje-ofertas.jpg" alt="Metodo Pago" class="img-fluid">
+            </div>
         </div>
     </div>
 </div>

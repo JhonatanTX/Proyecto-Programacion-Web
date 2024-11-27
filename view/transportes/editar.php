@@ -58,7 +58,7 @@
 
         <div class="row mb-3">
             <div class="offset-sm-3 col-sm-3 d-grid">
-                <button type="submit" class="btn btn-primary" style="background-color: #D50000; border-color: #D50000;">Guardar</button>
+                <button type="submit" class="btn btn-primary" style="background-color: #D50000; border-color: #D50000;"><i class="fas fa-sync-alt"></i> Actualizar</button>
             </div>
         </div>
     </form>

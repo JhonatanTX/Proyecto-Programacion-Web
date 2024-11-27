@@ -17,12 +17,14 @@
                 min-height: 2.5rem;
             }
 
-            .img-1{
-                background-image:url(../img/collage.png);
+            .img-1 {
+                background-image: url('https://perubellezas.com/wp-content/uploads/2023/01/lugares-turisticos-del-peru.jpg');
                 background-size: cover;
+                background-position: center;
                 margin: 0;
-                align-items: center;
+                height: 100vh;  /* Ocupa toda la altura de la ventana */
             }
+
         </style>
     </head>
 <body class="bg">

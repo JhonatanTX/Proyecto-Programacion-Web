@@ -31,7 +31,7 @@ class TransporteModel{
             }
             return $arrayTransporte;
         }else{
-            echo "0 results"; 
+            //echo "0 results"; 
         }
     }
 

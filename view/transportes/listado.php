@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="agenciaControl.php?opcion=transporte-nuevo">Nuevo Transporte</a></p>
+            <p><a href="agenciaControl.php?opcion=transporte-nuevo"><i class="fas fa-user-plus"></i>Nuevo Transporte</a></p>
         </div>
         
         <div class="col-sm-10 text-left"> 
@@ -39,8 +39,8 @@
                             <td><?php echo $value['precio'] ?></td>
                             <td><?php echo $value['fecha_salida'] ?></td>
                             <td><?php echo $value['destino'] ?></td>
-                            <td><a href="agenciaControl.php?opcion=transporte-editar&id_transporte=<?php echo $value['id_transporte'] ?>">Editar</a> - 
-                                <a href="agenciaControl.php?opcion=transporte-eliminar&id_transporte=<?php echo $value['id_transporte'] ?>">Eliminar</a></td>
+                            <td><a href="agenciaControl.php?opcion=transporte-editar&id_transporte=<?php echo $value['id_transporte'] ?>"><i class="fas fa-edit"></i></a> - 
+                                <a href="agenciaControl.php?opcion=transporte-eliminar&id_transporte=<?php echo $value['id_transporte'] ?>"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

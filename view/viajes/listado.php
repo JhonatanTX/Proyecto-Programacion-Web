@@ -2,7 +2,7 @@
     <div class="row content">
         
         <div class="col-sm-2 sidenav">
-            <p><a href="agenciaControl.php?opcion=viaje-nuevo">Nuevo Viaje</a></p>
+            <p><a href="agenciaControl.php?opcion=viaje-nuevo"><i class="fas fa-user-plus"></i>Nuevo Viaje</a></p>
         </div>
         
         <div class="col-sm-10 text-left"> 
@@ -41,8 +41,8 @@
                             <td><?php echo $value['fechas_disponibles'] ?></td>
                             <td><?php echo $value['duracion']?> dias</td>
                             <td><?php echo $value['transporte'] ?></td>
-                            <td><a href="agenciaControl.php?opcion=viaje-editar&id_viaje=<?php echo $value['id_viaje'] ?>">Editar</a> - 
-                                <a href="agenciaControl.php?opcion=viaje-eliminar&id_viaje=<?php echo $value['id_viaje'] ?>">Eliminar</a></td>
+                            <td><a href="agenciaControl.php?opcion=viaje-editar&id_viaje=<?php echo $value['id_viaje'] ?>"><i class="fas fa-edit"></i></a> - 
+                                <a href="agenciaControl.php?opcion=viaje-eliminar&id_viaje=<?php echo $value['id_viaje'] ?>"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>

@@ -31,7 +31,7 @@ class ProveedorModel{
             }
             return $arrayProveedor;
         }else{
-            echo "0 results"; 
+            //echo "0 results"; 
         }
     }
 

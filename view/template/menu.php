@@ -8,7 +8,7 @@ function isActive($option, $current_option) {
 }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7400A6">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #48027f">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
