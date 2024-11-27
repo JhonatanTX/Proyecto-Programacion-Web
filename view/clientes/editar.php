@@ -20,7 +20,7 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label" style="color: #D50000;">Correo Electrónico</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" name="correo_electronico" value="<?php echo isset($correo) ? $correo : ''; ?>" required>
+                <input type="email" class="form-control" name="correo_electronico" value="<?php echo isset($correo_electronico) ? $correo_electronico : ''; ?>" required>
             </div>
         </div>
 

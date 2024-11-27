@@ -20,7 +20,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="color: #d32f2f;">Correo Electrónico</label>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" name="correo" required>
+                    <input type="email" class="form-control" name="correo_electronico" required>
                 </div>
             </div>
 

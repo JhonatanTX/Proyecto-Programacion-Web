@@ -1,20 +1,44 @@
-<footer class="container-fluid text-center" style="position: fixed; bottom: 0; width: 100%; display: flex; justify-content: center; align-items: center; background-color: #48027f;">
-    <div style="width: 100%; max-width: 1200px; padding: 10px 20px; background-color: #ffffff; border-left: 50px solid #48027f; border-right: 50px solid #48027f;">
-        <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
-            <strong style="color: #48027f;">Soporte</strong>
-            <span style="margin-left: 10px;">
-                <i class="fas fa-envelope" style="font-size: 1.5em; color: #48027f;"></i>
-            </span>
-            <span style="margin-left: 5px;">
-                <a href="mailto:admin@unac.edu.pe" style="color: #48027f;">admin@unac.edu.pe</a>
-            </span>
-            <span style="margin-left: 10px;">&nbsp;|&nbsp;</span>
-            <span style="margin-left: 10px;">
-                <i class="fas fa-phone-alt" style="font-size: 1.5em; color: #48027f;"></i>
-            </span>
-            <span style="margin-left: 5px;">
-                <a href="tel:+51936512897" style="color: #48027f;">+51 936 512 897</a>
-            </span>
+<footer class="container-fluid text-center shadow-sm" style="position: fixed; bottom: 0; width: 100%; background-color: #48027f; color: #ffffff; padding: 10px 0; font-size: 0.85rem;">
+    <div class="container">
+        <div class="row text-center">
+            <!-- Información del sistema -->
+            <div class="col-md-6 border-end border-light">
+                <h6 class="fw-bold mb-1">Sistema de Gestión Empresarial</h6>
+                <p class="mb-0">© 2024 Travel Expert</p>
+                <p class="mb-0">Todos los derechos reservados</p>
+            </div>
+            <!-- Información de soporte -->
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-1">Soporte Técnico</h6>
+                <p class="mb-0">
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:admin@unac.edu.pe" class="text-light text-decoration-none">admin@unac.edu.pe</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-phone-alt me-2"></i>
+                    <a href="tel:+51936512897" class="text-light text-decoration-none">+51 936 512 897</a>
+                </p>
+            </div>
         </div>
     </div>
 </footer>
+
+<style>
+    footer {
+        font-family: 'Arial', sans-serif;
+        font-size: 0.85rem;
+        border-top: 2px solid #ffffff;
+    }
+    footer a:hover {
+        text-decoration: underline;
+        color: #ffcc00 !important;
+    }
+    @media (max-width: 768px) {
+        footer h6 {
+            font-size: 0.95rem;
+        }
+
+    }
+</style>
+
+
