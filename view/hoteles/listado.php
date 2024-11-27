@@ -39,7 +39,7 @@
                             <td><?php echo $value['telefono'] ?></td>
                             <td><?php echo $value['correo_electronico'] ?></td>
                             <td><?php echo $value['lugar'] ?></td>
-                            <td><a href="agenciaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>">E<i class="fas fa-edit"></i></a> - 
+                            <td><a href="agenciaControl.php?opcion=hotel-editar&id_hotel=<?php echo $value['id_hotel'] ?>"><i class="fas fa-edit"></i></a> - 
                                 <a href="agenciaControl.php?opcion=hotel-eliminar&id_hotel=<?php echo $value['id_hotel'] ?>"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     <?php } ?>
