@@ -127,7 +127,7 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Destino 1">
+                        <img src="https://th.bing.com/th/id/OIP.FcbEkaTKZ_SUoc7PtMxZYQHaE9?rs=1&pid=ImgDetMain" class="card-img-top" alt="Destino 1">
                         <div class="card-body">
                             <h5 class="card-title">Machu Picchu</h5>
                             <p class="card-text">Explora la maravilla del mundo en el corazón de los Andes.</p>
@@ -137,9 +137,9 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Destino 2">
+                        <img src="https://www.enperu.org/huanuco/wp-content/uploads/2017/01/Plaza_Mayor_Huanuco.jpg" class="card-img-top" alt="Destino 2">
                         <div class="card-body">
-                            <h5 class="card-title">París</h5>
+                            <h5 class="card-title">Plaza de huanuco</h5>
                             <p class="card-text">Sumérgete en el romance de la Ciudad de la Luz.</p>
                             <a href="#" class="btn btn-primary">Más Información</a>
                         </div>
@@ -147,9 +147,9 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Destino 3">
+                        <img src="https://th.bing.com/th/id/OIP.YQwRNEvuD1pLmdYy9SSD8gAAAA?rs=1&pid=ImgDetMain" class="card-img-top" alt="Destino 3">
                         <div class="card-body">
-                            <h5 class="card-title">Bali</h5>
+                            <h5 class="card-title">Reserva Nacional Pacaya-Samiria</h5>
                             <p class="card-text">Descubre playas paradisíacas y cultura vibrante.</p>
                             <a href="#" class="btn btn-primary">Más Información</a>
                         </div>
@@ -195,11 +195,11 @@
             <h2 class="section-title text-center">Promociones</h2>
             <div class="row g-4">
                 <div class="col-md-6">
-                    <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Promoción 1">
+                    <img src="https://cazaofertas.com.mx/wp-content/uploads/2020/03/Volaris-Hot-Travel-090320-01.jpg" class="img-fluid rounded" alt="Promoción 1">
                 </div>
                 <div class="col-md-6">
-                    <h5>Oferta Especial: 20% Descuento</h5>
-                    <p>Reserva un viaje a cualquier destino de Europa antes del 31 de diciembre y obtén un 20% de descuento.</p>
+                    <h5>Oferta Especial: 70% Descuento</h5>
+                    <p>Reserva un viaje a cualquier destino de Peru antes del 31 de diciembre y obtén un 70% de descuento.</p>
                     <a href="#" class="btn btn-primary">Reserva Ahora</a>
                 </div>
             </div>
